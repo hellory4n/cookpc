@@ -1,13 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+using CookPC.VM;
+using System;
 
 namespace CookPC {
     public class Game1 : Game {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private int loopCounter = 0;
+        // TODO: Get this from the cookpc filesystem
+        private string bootScript = 
+@"testing h
+tests h
+testing h
+tests h
+testing h
+tests h
+testing h
+tests h";
+        private int maxInstruction;
+        private int currentInstruction = 0;
+        private string instruction;
 
         public Game1() {
+            maxInstruction = bootScript.Split("\n").Length;
+            instruction = bootScript.Split("\n")[currentInstruction];
+
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -26,10 +44,20 @@ namespace CookPC {
         }
 
         protected override void Update(GameTime gameTime) {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            while (loopCounter < 500) {
+                var jsssjjsjshshsj = Lexer.Tokenize(instruction);
+                InstructionRunner.Run(jsssjjsjshshsj);
 
-            // TODO: Add your update logic here
+                currentInstruction++;
+                if (currentInstruction == maxInstruction)
+                    currentInstruction = 0;
+
+                instruction = bootScript.Split("\n")[currentInstruction];
+
+
+                loopCounter++;
+            }
+            loopCounter = 0;
 
             base.Update(gameTime);
         }

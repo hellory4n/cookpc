@@ -15,6 +15,14 @@ namespace CookPC.VM {
                 case "tests":
                     System.Console.WriteLine("qttiriirieie");
                     break;
+                
+                case "zero":
+                    System.Console.WriteLine("00000000000000000000000");
+                    break;
+                
+                case "one":
+                    System.Console.WriteLine("11111111111111111111111");
+                    break;
             }
         }
     }
