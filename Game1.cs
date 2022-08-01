@@ -15,7 +15,16 @@ namespace CookPC {
 mcset 0
 mvdef epokvariable 69
 mvdef urmomisfat true
-mvfree epokvariable";
+mvdef one 1
+mvdef two 2
+mvdef three 3
+mvdef four 4
+mvdef five 5
+mvdef six 6
+mvdef seven 7
+mvdef eight 8
+mvdef nine 9
+mvdef ten 10";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
@@ -45,6 +54,8 @@ mvfree epokvariable";
         }
 
         protected override void Update(GameTime gameTime) {
+            // Run stuff :)
+            // TODO: Make it blazingly fast
             while (loopCounter < 1) {
                 var jsssjjsjshshsj = Lexer.Tokenize(instruction);
                 /*foreach (var item in jsssjjsjshshsj) {
@@ -68,6 +79,12 @@ mvfree epokvariable";
             System.Console.WriteLine(variableCount);
 
             loopCounter = 0;
+
+            // We don't want people to create 694201337 variables, that's illegal
+            // TODO: Get this from somewhere
+            // TODO: Don't make the limit this stupid
+            if (variableCount > 9) 
+                this.Exit();
 
             base.Update(gameTime);
         }
