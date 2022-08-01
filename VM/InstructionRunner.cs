@@ -38,11 +38,23 @@ namespace CookPC.VM {
                     break;
                 
                 case "mcamount":
-                    // str (arg0): the variable the result will be saved to
+                    // str arg0: the variable the result will be saved to
 
                     memory[currentChunk][args[0]] = memory.Count;
                     // TODO: Remove this
                     System.Console.WriteLine(memory.Count);
+                    break;
+                
+                case "mvamount":
+                    // int arg0: chunk id
+                    // str arg1: the variable the result will be saved to
+                    var __ = int.TryParse(args[0], out int cHashtag);
+                    // TODO: Change this
+                    if (cHashtag == -1)
+                        System.Console.WriteLine(variableCount);
+                    else
+                        System.Console.WriteLine(memory[cHashtag].Count);
+
                     break;
 
                 #endregion
