@@ -12,8 +12,20 @@ namespace CookPC {
         // TODO: Get this from the cookpc filesystem
         private string bootScript = 
 @"mcalloc 0
+mcalloc 0
+mcalloc 0
+mcalloc 0
+mcalloc 0
+mcalloc 0
+mcalloc 0
+mcalloc 0
+mcalloc 0
+mcalloc 0
+mcalloc 0
+mcalloc 0
 mcset 0
 mvdef epokvariable 69
+mcamount epokvariable
 mvdef urmomisfat true
 mvdef one 1
 mvdef two 2
@@ -75,8 +87,6 @@ mvdef ten 10";
             /*foreach (KeyValuePair<string, dynamic> m in memory[currentChunk]) {
                 System.Console.WriteLine(m.Key + ": " + m.Value);
             }*/
-
-            System.Console.WriteLine(variableCount);
 
             loopCounter = 0;
 

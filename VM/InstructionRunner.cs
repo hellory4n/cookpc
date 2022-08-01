@@ -36,6 +36,14 @@ namespace CookPC.VM {
                     memory[currentChunk].Remove(args[0]);
                     variableCount--;
                     break;
+                
+                case "mcamount":
+                    // str (arg0): the variable the result will be saved to
+
+                    memory[currentChunk][args[0]] = memory.Count;
+                    // TODO: Remove this
+                    System.Console.WriteLine(memory.Count);
+                    break;
 
                 #endregion
             }
