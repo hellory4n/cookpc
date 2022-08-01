@@ -27,6 +27,12 @@ namespace CookPC.VM {
 
                     memory[currentChunk][args[0]] = (dynamic)args[1];
                     break;
+                
+                case "mvfree":
+                    // str arg0: variable name
+
+                    memory[currentChunk].Remove(args[0]);
+                    break;
 
                 #endregion
             }

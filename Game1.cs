@@ -14,7 +14,8 @@ namespace CookPC {
 @"mcalloc 0
 mcset 0
 mvdef epokvariable 69
-mvdef epokvariable 69420";
+mvdef urmomisfat true
+mvfree epokvariable";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
@@ -43,7 +44,7 @@ mvdef epokvariable 69420";
         }
 
         protected override void Update(GameTime gameTime) {
-            while (loopCounter < 4) {
+            while (loopCounter < 5) {
                 var jsssjjsjshshsj = Lexer.Tokenize(instruction);
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
