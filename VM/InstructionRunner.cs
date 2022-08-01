@@ -19,7 +19,13 @@ namespace CookPC.VM {
                     // int arg0: chunk id
                     var _ = int.TryParse(args[0], out int chunkID);
                     currentChunk = chunkID;
+                    break;
+                
+                case "mvdef":
+                    // str arg0: variable name
+                    // any arg1: value
 
+                    memory[currentChunk][args[0]] = (dynamic)args[1];
                     break;
 
                 #endregion

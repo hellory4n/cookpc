@@ -12,8 +12,10 @@ namespace CookPC {
         // TODO: Get this from the cookpc filesystem
         private string bootScript = 
 @"mcalloc 0
-mcalloc 0
-mcset 1";
+mcset 0
+mvdef epokvariable 69
+mvdef var true
+mvdef string ""sussy amogus""";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
@@ -42,7 +44,7 @@ mcset 1";
         }
 
         protected override void Update(GameTime gameTime) {
-            while (loopCounter < 3) {
+            while (loopCounter < 5) {
                 var jsssjjsjshshsj = Lexer.Tokenize(instruction);
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
@@ -58,8 +60,11 @@ mcset 1";
 
                 loopCounter++;
             }
-            System.Console.WriteLine("amount of chunks: " + memory.Count);
-            System.Console.WriteLine("current chunk: " + currentChunk);
+
+            foreach (KeyValuePair<string, dynamic> m in memory[currentChunk]) {
+                System.Console.WriteLine(m.Key + ": " + m.Value);
+            }
+
             // TODO: Uncomment this
             // loopCounter = 0;
 
