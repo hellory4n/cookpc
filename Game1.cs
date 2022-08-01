@@ -10,14 +10,9 @@ namespace CookPC {
         private int loopCounter = 0;
         // TODO: Get this from the cookpc filesystem
         private string bootScript = 
-@"testing h
-tests h
-testing h
-tests h
-testing h
-tests h
-testing h
-tests h";
+@"test ""strings are cool""
+hbjeknrjklçe eklekel
+jjsjshshsj ""ejekjekoelkel ekkeke kelekhjkae njklenjkl,leknm,.""";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
@@ -46,6 +41,9 @@ tests h";
         protected override void Update(GameTime gameTime) {
             while (loopCounter < 500) {
                 var jsssjjsjshshsj = Lexer.Tokenize(instruction);
+                foreach (var item in jsssjjsjshshsj) {
+                    System.Console.WriteLine(item);
+                }
                 InstructionRunner.Run(jsssjjsjshshsj);
 
                 currentInstruction++;
