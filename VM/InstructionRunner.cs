@@ -3,27 +3,28 @@ using System.Linq;
 
 namespace CookPC.VM {
     class InstructionRunner {
-        public static void Run(List<string> instruction) {
+        public static (List<Dictionary<string, dynamic>>, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
 
             switch (method) {
-                case "testing":
-                    System.Console.WriteLine("jcwjjsjhjsj");
+                #region Memory instructions
+
+                case "mcalloc":
+                    // Mega complicated logic.
+                    memory.Add(new Dictionary<string, dynamic>());
                     break;
 
-                case "tests":
-                    System.Console.WriteLine("qttiriirieie");
+                case "mcset":
+                    // int arg0: chunk id
+
+
                     break;
-                
-                case "zero":
-                    System.Console.WriteLine("00000000000000000000000");
-                    break;
-                
-                case "one":
-                    System.Console.WriteLine("11111111111111111111111");
-                    break;
+
+                #endregion
             }
+
+            return (memory, currentChunk);
         }
     }
 }

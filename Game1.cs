@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using CookPC.VM;
 using System;
+using System.Collections.Generic;
 
 namespace CookPC {
     public class Game1 : Game {
@@ -10,12 +11,12 @@ namespace CookPC {
         private int loopCounter = 0;
         // TODO: Get this from the cookpc filesystem
         private string bootScript = 
-@"test ""strings are cool""
-hbjeknrjklçe eklekel
-jjsjshshsj ""ejekjekoelkel ekkeke kelekhjkae njklenjkl,leknm,.""";
+@"mcalloc 0";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
+        private List<Dictionary<string, dynamic>> memory = new List<Dictionary<string, dynamic>>();
+        private int currentChunk;
 
         public Game1() {
             maxInstruction = bootScript.Split("\n").Length;
@@ -39,12 +40,12 @@ jjsjshshsj ""ejekjekoelkel ekkeke kelekhjkae njklenjkl,leknm,.""";
         }
 
         protected override void Update(GameTime gameTime) {
-            while (loopCounter < 500) {
+            while (loopCounter < 5) {
                 var jsssjjsjshshsj = Lexer.Tokenize(instruction);
-                foreach (var item in jsssjjsjshshsj) {
+                /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
-                }
-                InstructionRunner.Run(jsssjjsjshshsj);
+                }*/
+                (memory, currentChunk) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk);
 
                 currentInstruction++;
                 if (currentInstruction == maxInstruction)
@@ -55,7 +56,9 @@ jjsjshshsj ""ejekjekoelkel ekkeke kelekhjkae njklenjkl,leknm,.""";
 
                 loopCounter++;
             }
-            loopCounter = 0;
+            System.Console.WriteLine(memory.Count);
+            // TODO: Uncomment this
+            // loopCounter = 0;
 
             base.Update(gameTime);
         }
