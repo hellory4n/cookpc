@@ -17,7 +17,8 @@ namespace CookPC.VM {
 
                 case "mcset":
                     // int arg0: chunk id
-
+                    var _ = int.TryParse(args[0], out int chunkID);
+                    currentChunk = chunkID;
 
                     break;
 

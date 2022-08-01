@@ -11,7 +11,9 @@ namespace CookPC {
         private int loopCounter = 0;
         // TODO: Get this from the cookpc filesystem
         private string bootScript = 
-@"mcalloc 0";
+@"mcalloc 0
+mcalloc 0
+mcset 1";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
@@ -40,7 +42,7 @@ namespace CookPC {
         }
 
         protected override void Update(GameTime gameTime) {
-            while (loopCounter < 5) {
+            while (loopCounter < 3) {
                 var jsssjjsjshshsj = Lexer.Tokenize(instruction);
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
@@ -56,7 +58,8 @@ namespace CookPC {
 
                 loopCounter++;
             }
-            System.Console.WriteLine(memory.Count);
+            System.Console.WriteLine("amount of chunks: " + memory.Count);
+            System.Console.WriteLine("current chunk: " + currentChunk);
             // TODO: Uncomment this
             // loopCounter = 0;
 
