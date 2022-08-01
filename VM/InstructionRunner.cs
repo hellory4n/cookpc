@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace CookPC.VM {
     class InstructionRunner {
-        public static (List<Dictionary<string, dynamic>>, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk) {
+        public static (List<Dictionary<string, dynamic>>, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
 
@@ -25,6 +25,8 @@ namespace CookPC.VM {
                     // str arg0: variable name
                     // any arg1: value
 
+                    if (!memory[currentChunk].ContainsKey(args[0]))
+                        variableCount++;
                     memory[currentChunk][args[0]] = (dynamic)args[1];
                     break;
                 
@@ -32,12 +34,13 @@ namespace CookPC.VM {
                     // str arg0: variable name
 
                     memory[currentChunk].Remove(args[0]);
+                    variableCount--;
                     break;
 
                 #endregion
             }
 
-            return (memory, currentChunk);
+            return (memory, currentChunk, variableCount);
         }
     }
 }

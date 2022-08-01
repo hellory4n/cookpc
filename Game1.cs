@@ -21,6 +21,7 @@ mvfree epokvariable";
         private string instruction;
         private List<Dictionary<string, dynamic>> memory = new List<Dictionary<string, dynamic>>();
         private int currentChunk;
+        private int variableCount = 0;
 
         public Game1() {
             maxInstruction = bootScript.Split("\n").Length;
@@ -44,12 +45,12 @@ mvfree epokvariable";
         }
 
         protected override void Update(GameTime gameTime) {
-            while (loopCounter < 5) {
+            while (loopCounter < 1) {
                 var jsssjjsjshshsj = Lexer.Tokenize(instruction);
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
                 }*/
-                (memory, currentChunk) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk);
+                (memory, currentChunk, variableCount) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount);
 
                 currentInstruction++;
                 if (currentInstruction == maxInstruction)
@@ -57,16 +58,16 @@ mvfree epokvariable";
 
                 instruction = bootScript.Split("\n")[currentInstruction];
 
-
                 loopCounter++;
             }
 
-            foreach (KeyValuePair<string, dynamic> m in memory[currentChunk]) {
+            /*foreach (KeyValuePair<string, dynamic> m in memory[currentChunk]) {
                 System.Console.WriteLine(m.Key + ": " + m.Value);
-            }
+            }*/
 
-            // TODO: Uncomment this
-            // loopCounter = 0;
+            System.Console.WriteLine(variableCount);
+
+            loopCounter = 0;
 
             base.Update(gameTime);
         }
