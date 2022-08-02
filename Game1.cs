@@ -14,7 +14,8 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-debug ""Hi mom""
+mvdef mues ""debug""
+$mues ""ur mom HAHAHAHA""
 mvdef five 5
 mvdef six 6
 mvdef seven 7
@@ -53,7 +54,7 @@ mvdef ten 10";
             // Run stuff :)
             // TODO: Make it blazingly fast
             while (loopCounter < 1) {
-                var jsssjjsjshshsj = Lexer.Tokenize(instruction);
+                var jsssjjsjshshsj = Lexer.Tokenize(instruction, memory, currentChunk);
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
                 }*/
