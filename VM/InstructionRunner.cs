@@ -63,6 +63,15 @@ namespace CookPC.VM {
                     break;
 
                 #endregion
+
+                #region Boolean stuff
+
+                case "not":
+                    var ___ = bool.TryParse(args[0], out bool one);
+                    memory[currentChunk][args[1]] = !one;
+                    break;
+
+                #endregion
             }
 
             return (memory, currentChunk, variableCount);

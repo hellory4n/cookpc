@@ -14,8 +14,10 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-mvdef mues ""debug""
-$mues ""ur mom HAHAHAHA""
+mvdef boolean true
+debug $boolean
+not $boolean boolean
+debug $boolean
 mvdef five 5
 mvdef six 6
 mvdef seven 7
