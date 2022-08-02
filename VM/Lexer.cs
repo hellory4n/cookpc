@@ -23,8 +23,9 @@ namespace CookPC.VM {
         // TODO: Write good code
         public static string DoStuffWithString(string input) {
             // TODO: Add the \ thing
-            string result = input.Substring(1, input.Length-2);
-            return result;
+            if (input.StartsWith("\"") && input.EndsWith("\""))
+                input = input.Substring(1, input.Length-2);
+            return input;
         }
     }
 }
