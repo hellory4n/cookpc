@@ -14,15 +14,7 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-mvdef epokvariable 69
-mvdef urmomisfat true
-mcset 1
-mvdef one 1
-mvdef two 2
-mvdef three 3
-mvdef four 4
-mvamount 0
-mvamount -1
+debug ""Hi mom""
 mvdef five 5
 mvdef six 6
 mvdef seven 7

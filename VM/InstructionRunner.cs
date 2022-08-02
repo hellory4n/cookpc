@@ -58,6 +58,14 @@ namespace CookPC.VM {
                     break;
 
                 #endregion
+
+                #region Misc
+
+                case "debug":
+                    System.Console.WriteLine(args[0]);
+                    break;
+
+                #endregion
             }
 
             return (memory, currentChunk, variableCount);
