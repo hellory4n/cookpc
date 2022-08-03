@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using CookPC.VM;
 using System;
 using System.Collections.Generic;
-using System.Xml;
-using System.IO;
 
 namespace CookPC {
     public class Game1 : Game {
@@ -39,55 +37,7 @@ ifjump 4 $urmom";
         }
 
         protected override void Initialize() {
-            // Init filesystem
-            // TODO: Test it on windows and android this sounds weird "and an-droid"
-            string cookstorage = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc.xml"; // Thank you, Microsoft
-            if (!File.Exists(cookstorage)) {
-                File.WriteAllText(cookstorage,
-@"<cookpc>
-
-    <computer>
-        <cpuArchitecture>leg16</cpuArchitecture>
-        <varLimit>2048</varLimit>
-        <!-- what kind of device is running cookpc -->
-        <hostType>desktop</hostType>
-        <screenX>640</screenX>
-        <screenY>480</screenY>
-        <!-- TODO: Add a color palette-->
-        <soundChannels>16</soundChannels>
-        <cookPcVersion>0.0.69</cookPcVersion>
-        <!-- DEV: Development version, very unstable -->
-        <!-- BETA: Beta -->
-        <!-- Release: Will be used once 1.0 is out-->
-        <cookPcReleaseType>DEV</cookPcReleaseType>
-    </computer>
-
-    <fsroot>
-        <folder name=""system"">
-            <file name=""bloat1"">ur</file>
-            <file name=""bloat2"">mom</file>
-            <file name=""bloat3"">is</file>
-            <file name=""bloat4"">veri</file>
-            <file name=""bloat5"">fat</file>
-        </folder>
-    </fsroot>
-
-</cookpc>");
-            }
-            // TODO: Add an update system
-
-            // Load the XML document
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(File.ReadAllText(cookstorage));
-
-            XmlNode root = doc.FirstChild;
-            if (root.HasChildNodes) {
-                for (int i = 0; i < root.ChildNodes.Count; i++) {
-                    for (int iphone = 0; iphone < root.ChildNodes[i].ChildNodes.Count; iphone++) {
-                        Console.WriteLine(root.ChildNodes[i].ChildNodes[iphone].InnerText);
-                    }
-                }
-            }
+            // TODO: Add your initialization logic here
 
             base.Initialize();
         }
