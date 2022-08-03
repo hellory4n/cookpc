@@ -14,7 +14,7 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-modulo 9 10 twentyone
+power 9 10 twentyone
 debug $twentyone
 mvdef five 5
 mvdef six 6

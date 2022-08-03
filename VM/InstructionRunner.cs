@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace CookPC.VM {
     class InstructionRunner {
@@ -131,6 +132,12 @@ namespace CookPC.VM {
                     var ____________________ = double.TryParse(args[0], out double eighteen);
                     var _____________________ = double.TryParse(args[1], out double nineteen);
                     memory[currentChunk][args[2]] = eighteen % nineteen;
+                    break;
+                
+                case "power":
+                    var ______________________ = double.TryParse(args[0], out double twenty);
+                    var _______________________ = double.TryParse(args[1], out double twentyone);
+                    memory[currentChunk][args[2]] = Math.Pow(twenty, twentyone);
                     break;
 
                 #endregion
