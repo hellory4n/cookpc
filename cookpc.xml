@@ -9,6 +9,11 @@
         <screenY>480</screenY>
         <!-- TODO: Add a color palette-->
         <soundChannels>16</soundChannels>
+        <cookPcVersion>0.0.69</cookPcVersion>
+        <!-- DEV: Development version, very unstable -->
+        <!-- BETA: Beta -->
+        <!-- Release: Will be used once 1.0 is out-->
+        <cookPcReleaseType>DEV</cookPcReleaseType>
     </computer>
 
     <fsroot>

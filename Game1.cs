@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using CookPC.VM;
 using System;
 using System.Collections.Generic;
+using System.Xml;
+using System.IO;
 
 namespace CookPC {
     public class Game1 : Game {
@@ -37,7 +39,29 @@ ifjump 4 $urmom";
         }
 
         protected override void Initialize() {
-            // TODO: Add your initialization logic here
+            // Init filesystem
+            // TODO: Test it on windows and android this sounds weird "and an-droid"
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc.xml"))
+                System.Console.WriteLine("it's there");
+            else
+                System.Console.WriteLine("jsjjjjjs");
+
+            /*XmlDocument doc = new XmlDocument();
+            doc.LoadXml("<book ISBN='1-861001-57-5'>" +
+                        "<title>Pride And Prejudice</title>" +
+                        "<price>19.95</price>" +
+                        "</book>");
+
+            XmlNode root = doc.FirstChild;
+
+            //Display the contents of the child nodes.
+            if (root.HasChildNodes)
+            {
+                for (int i = 0; i < root.ChildNodes.Count; i++)
+                {
+                    Console.WriteLine(root.ChildNodes[i].InnerText);
+                }
+            }*/
 
             base.Initialize();
         }
