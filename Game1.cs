@@ -41,9 +41,9 @@ ifjump 4 $urmom";
         protected override void Initialize() {
             // Init filesystem
             // TODO: Test it on windows and android this sounds weird "and an-droid"
-            // Thank you, Microsoft
-            if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc.xml")) {
-                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc.xml",
+            string cookstorage = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc.xml"; // Thank you, Microsoft
+            if (!File.Exists(cookstorage)) {
+                File.WriteAllText(cookstorage,
 @"<cookpc>
 
     <computer>
@@ -76,22 +76,18 @@ ifjump 4 $urmom";
             }
             // TODO: Add an update system
 
-            /*XmlDocument doc = new XmlDocument();
-            doc.LoadXml("<book ISBN='1-861001-57-5'>" +
-                        "<title>Pride And Prejudice</title>" +
-                        "<price>19.95</price>" +
-                        "</book>");
+            // Load the XML document
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(File.ReadAllText(cookstorage));
 
             XmlNode root = doc.FirstChild;
-
-            //Display the contents of the child nodes.
-            if (root.HasChildNodes)
-            {
-                for (int i = 0; i < root.ChildNodes.Count; i++)
-                {
-                    Console.WriteLine(root.ChildNodes[i].InnerText);
+            if (root.HasChildNodes) {
+                for (int i = 0; i < root.ChildNodes.Count; i++) {
+                    for (int iphone = 0; iphone < root.ChildNodes[i].ChildNodes.Count; iphone++) {
+                        Console.WriteLine(root.ChildNodes[i].ChildNodes[iphone].InnerText);
+                    }
                 }
-            }*/
+            }
 
             base.Initialize();
         }
