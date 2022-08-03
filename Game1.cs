@@ -14,15 +14,12 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-mvdef coolnumber 69
-strcomb ""nice number: "" $coolnumber mi_raculous
-debug $mi_raculous
-mvdef five 5
-mvdef six 6
-mvdef seven 7
-mvdef eight 8
-mvdef nine 9
-mvdef ten 10";
+mvdef c 0
+add $c 1 c
+debug $c
+equal $c 10 urmom
+not $urmom urmom
+ifjump 4 $urmom";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
@@ -59,7 +56,7 @@ mvdef ten 10";
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
                 }*/
-                (memory, currentChunk, variableCount) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount);
+                (memory, currentChunk, variableCount, currentInstruction) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction);
 
                 currentInstruction++;
                 if (currentInstruction == maxInstruction)

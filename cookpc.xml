@@ -1,0 +1,24 @@
+<cookpc>
+
+    <computer>
+        <cpuArchitecture>leg16</cpuArchitecture>
+        <varLimit>2048</varLimit>
+        <!-- what kind of device is running cookpc -->
+        <hostType>desktop</hostType>
+        <screenX>640</screenX>
+        <screenY>480</screenY>
+        <!-- TODO: Add a color palette-->
+        <soundChannels>16</soundChannels>
+    </computer>
+
+    <fsroot>
+        <folder name="system">
+            <file name="bloat1">ur</file>
+            <file name="bloat2">mom</file>
+            <file name="bloat3">is</file>
+            <file name="bloat4">veri</file>
+            <file name="bloat5">fat</file>
+        </folder>
+    </fsroot>
+
+</cookpc>

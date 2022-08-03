@@ -4,7 +4,7 @@ using System;
 
 namespace CookPC.VM {
     class InstructionRunner {
-        public static (List<Dictionary<string, dynamic>>, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount) {
+        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
 
@@ -145,9 +145,25 @@ namespace CookPC.VM {
                     break;
 
                 #endregion
+
+                #region Control
+
+                case "jump":
+                    var ________________________ = int.TryParse(args[0], out int twentytwo);
+                    currentInstruction = twentytwo-1; // the interpreter will increment the currentInstruction counter
+                    break;
+                
+                case "ifjump":
+                    var _________________________ = int.TryParse(args[0], out int twentythree);
+                    var __________________________ = bool.TryParse(args[1], out bool twentyfour);
+                    if (twentyfour)
+                        currentInstruction = twentythree-1; // the interpreter will increment the currentInstruction counter
+                    break;
+
+                #endregion
             }
 
-            return (memory, currentChunk, variableCount);
+            return (memory, currentChunk, variableCount, currentInstruction);
         }
     }
 }
