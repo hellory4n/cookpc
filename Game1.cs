@@ -14,9 +14,9 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-less 420 69 NegativeSquaredLatinCapitalLetterB
+greater 420 69 NegativeSquaredLatinCapitalLetterB
 debug $NegativeSquaredLatinCapitalLetterB
-less 69 420 NegativeSquaredLatinCapitalLetterB
+greater 69 420 NegativeSquaredLatinCapitalLetterB
 debug $NegativeSquaredLatinCapitalLetterB
 mvdef five 5
 mvdef six 6

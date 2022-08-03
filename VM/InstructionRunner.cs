@@ -92,6 +92,12 @@ namespace CookPC.VM {
                     var _________ = double.TryParse(args[1], out double seven);
                     memory[currentChunk][args[2]] = six < seven;
                     break;
+                
+                case "greater":
+                    var __________ = double.TryParse(args[0], out double eight);
+                    var ___________ = double.TryParse(args[1], out double nine);
+                    memory[currentChunk][args[2]] = eight > nine;
+                    break;
 
                 #endregion
             }
