@@ -41,10 +41,40 @@ ifjump 4 $urmom";
         protected override void Initialize() {
             // Init filesystem
             // TODO: Test it on windows and android this sounds weird "and an-droid"
-            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc.xml"))
-                System.Console.WriteLine("it's there");
-            else
-                System.Console.WriteLine("jsjjjjjs");
+            // Thank you, Microsoft
+            if (!File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc.xml")) {
+                File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc.xml",
+@"<cookpc>
+
+    <computer>
+        <cpuArchitecture>leg16</cpuArchitecture>
+        <varLimit>2048</varLimit>
+        <!-- what kind of device is running cookpc -->
+        <hostType>desktop</hostType>
+        <screenX>640</screenX>
+        <screenY>480</screenY>
+        <!-- TODO: Add a color palette-->
+        <soundChannels>16</soundChannels>
+        <cookPcVersion>0.0.69</cookPcVersion>
+        <!-- DEV: Development version, very unstable -->
+        <!-- BETA: Beta -->
+        <!-- Release: Will be used once 1.0 is out-->
+        <cookPcReleaseType>DEV</cookPcReleaseType>
+    </computer>
+
+    <fsroot>
+        <folder name=""system"">
+            <file name=""bloat1"">ur</file>
+            <file name=""bloat2"">mom</file>
+            <file name=""bloat3"">is</file>
+            <file name=""bloat4"">veri</file>
+            <file name=""bloat5"">fat</file>
+        </folder>
+    </fsroot>
+
+</cookpc>");
+            }
+            // TODO: Add an update system
 
             /*XmlDocument doc = new XmlDocument();
             doc.LoadXml("<book ISBN='1-861001-57-5'>" +
