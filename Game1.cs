@@ -14,12 +14,10 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-or true false boo
-debug $boo
-or false false boo
-debug $boo
-or true true boo
-debug $boo
+equal 69 69 NegativeSquaredLatinCapitalLetterB
+debug $NegativeSquaredLatinCapitalLetterB
+equal 69.42 69 NegativeSquaredLatinCapitalLetterB
+debug $NegativeSquaredLatinCapitalLetterB
 mvdef five 5
 mvdef six 6
 mvdef seven 7

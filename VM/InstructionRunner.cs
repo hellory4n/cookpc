@@ -82,6 +82,10 @@ namespace CookPC.VM {
                     var _______ = bool.TryParse(args[1], out bool five);
                     memory[currentChunk][args[2]] = four || five;
                     break;
+                
+                case "equal":
+                    memory[currentChunk][args[2]] = args[0].ToString() == args[1].ToString();
+                    break;
 
                 #endregion
             }
