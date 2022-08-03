@@ -126,6 +126,12 @@ namespace CookPC.VM {
                     var ___________________ = double.TryParse(args[1], out double seventeen);
                     memory[currentChunk][args[2]] = sixteen / seventeen;
                     break;
+                
+                case "modulo":
+                    var ____________________ = double.TryParse(args[0], out double eighteen);
+                    var _____________________ = double.TryParse(args[1], out double nineteen);
+                    memory[currentChunk][args[2]] = eighteen % nineteen;
+                    break;
 
                 #endregion
             }
