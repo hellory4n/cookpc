@@ -100,6 +100,16 @@ namespace CookPC.VM {
                     break;
 
                 #endregion
+
+                #region Me- uhh i mean math
+
+                case "add":
+                    var ____________ = double.TryParse(args[0], out double ten);
+                    var _____________ = double.TryParse(args[1], out double eleven);
+                    memory[currentChunk][args[2]] = ten + eleven;
+                    break;
+
+                #endregion
             }
 
             return (memory, currentChunk, variableCount);
