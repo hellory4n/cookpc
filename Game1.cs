@@ -14,11 +14,11 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-and true false boo
+or true false boo
 debug $boo
-and false false boo
+or false false boo
 debug $boo
-and true true boo
+or true true boo
 debug $boo
 mvdef five 5
 mvdef six 6

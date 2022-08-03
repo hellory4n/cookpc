@@ -76,6 +76,12 @@ namespace CookPC.VM {
                     var _____ = bool.TryParse(args[1], out bool three);
                     memory[currentChunk][args[2]] = two && three;
                     break;
+                
+                case "or":
+                    var ______ = bool.TryParse(args[0], out bool four);
+                    var _______ = bool.TryParse(args[1], out bool five);
+                    memory[currentChunk][args[2]] = four || five;
+                    break;
 
                 #endregion
             }
