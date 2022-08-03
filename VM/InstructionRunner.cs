@@ -62,6 +62,10 @@ namespace CookPC.VM {
                 case "debug":
                     System.Console.WriteLine(args[0]);
                     break;
+                
+                case "strcomb":
+                    memory[currentChunk][args[2]] = args[0].ToString() + args[1].ToString();
+                    break;
 
                 #endregion
 
