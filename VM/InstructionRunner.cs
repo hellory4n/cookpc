@@ -114,6 +114,12 @@ namespace CookPC.VM {
                     var _______________ = double.TryParse(args[1], out double thirteen);
                     memory[currentChunk][args[2]] = twelve - thirteen;
                     break;
+                
+                case "multiply":
+                    var ________________ = double.TryParse(args[0], out double fourteen);
+                    var _________________ = double.TryParse(args[1], out double fifteen);
+                    memory[currentChunk][args[2]] = fourteen * fifteen;
+                    break;
 
                 #endregion
             }
