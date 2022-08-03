@@ -108,6 +108,12 @@ namespace CookPC.VM {
                     var _____________ = double.TryParse(args[1], out double eleven);
                     memory[currentChunk][args[2]] = ten + eleven;
                     break;
+                
+                case "subtract":
+                    var ______________ = double.TryParse(args[0], out double twelve);
+                    var _______________ = double.TryParse(args[1], out double thirteen);
+                    memory[currentChunk][args[2]] = twelve - thirteen;
+                    break;
 
                 #endregion
             }
