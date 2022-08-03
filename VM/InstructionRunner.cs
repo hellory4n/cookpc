@@ -86,6 +86,12 @@ namespace CookPC.VM {
                 case "equal":
                     memory[currentChunk][args[2]] = args[0].ToString() == args[1].ToString();
                     break;
+                
+                case "less":
+                    var ________ = double.TryParse(args[0], out double six);
+                    var _________ = double.TryParse(args[1], out double seven);
+                    memory[currentChunk][args[2]] = six < seven;
+                    break;
 
                 #endregion
             }
