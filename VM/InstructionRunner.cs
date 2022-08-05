@@ -186,6 +186,29 @@ namespace CookPC.VM {
                     File.WriteAllText(cookfolder + "/" + args[0] + args[1], g);
 
                     break;
+                
+                case "sread":
+                    // str arg0: disk to write
+                    // int arg1: partition
+                    // int arg2: start position
+                    // int arg3: end position
+                    // str arg4: save to
+
+                    string data = File.ReadAllText(cookfolder + "/" + args[0] + args[1]);
+                    StringBuilder sb2 = new StringBuilder(data);
+                    var ____________________________ = int.TryParse(args[2], out int twentysix);
+                    var _____________________________ = int.TryParse(args[3], out int twentyseven);
+                    var ii = 0;
+                    string thething = "";
+ 
+                    while (ii != twentyseven+1) {
+                        thething += sb2[twentysix+ii];
+                        ii++;
+                    }
+
+                    memory[currentChunk][args[4]] = thething;
+
+                    break;
 
                 #endregion
             }

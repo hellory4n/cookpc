@@ -15,8 +15,8 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-swrite localstorage 1 0 ""cookfs""
-swrite localstorage 1 48 ""b""
+sread localstorage 1 1 4 fard
+debug $fard
 jump -1";
         private int maxInstruction;
         private int currentInstruction = 0;
