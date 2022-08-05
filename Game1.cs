@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using CookPC.VM;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace CookPC {
     public class Game1 : Game {
@@ -37,7 +38,42 @@ ifjump 4 $urmom";
         }
 
         protected override void Initialize() {
-            // TODO: Add your initialization logic here
+            // TODO: Test it on android and windows
+            string cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc";
+            if (!Directory.Exists(cookfolder)) {
+                Directory.CreateDirectory(cookfolder);
+                File.WriteAllText(cookfolder + "/drives.json", 
+@"{
+	""localstorage"": {
+		""max"": 69,
+		""partitions"": [
+			{
+				""max"": 69
+			}
+		]
+	},
+	""floppy_a"": {
+		""max"": 69,
+		""partitions"": [
+			{
+				""max"": 69
+			}
+		]
+	},
+	""floppy_b"": {
+		""max"": 69,
+		""partitions"": [
+			{
+				""max"": 69
+			}
+		]
+	}
+}");
+                // TODO: change drive size
+                File.WriteAllText(cookfolder + "/localstorage1", new string(' ', 69));
+                File.WriteAllText(cookfolder + "/floppy_a1", new string(' ', 69));
+                File.WriteAllText(cookfolder + "/floppy_b1", new string(' ', 69));
+            }
 
             base.Initialize();
         }
