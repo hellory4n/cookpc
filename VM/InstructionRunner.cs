@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.IO;
+using System.Text;
 
 namespace CookPC.VM {
     class InstructionRunner {
-        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction) {
+        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction, string cookfolder) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
 
@@ -158,6 +160,25 @@ namespace CookPC.VM {
                     var __________________________ = bool.TryParse(args[1], out bool twentyfour);
                     if (twentyfour)
                         currentInstruction = twentythree-1; // the interpreter will increment the currentInstruction counter
+                    break;
+
+                #endregion
+
+                #region Storage
+
+                case "swrite":
+                    // str arg0: disk to write
+                    // int arg1: partition
+                    // int arg2: position on disk
+                    // str arg3: character
+
+                    string old = File.ReadAllText(cookfolder + "/" + args[0] + args[1]);
+                    StringBuilder sb = new StringBuilder(old);
+                    var ___________________________ = int.TryParse(args[2], out int twentyfive);
+                    sb[twentyfive] = args[3][0];
+                    var g = sb.ToString(); // TODO: be a good programmer
+                    File.WriteAllText(cookfolder + "/" + args[0] + args[1], g);
+
                     break;
 
                 #endregion

@@ -15,18 +15,21 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-mvdef c 0
-add $c 1 c
-debug $c
-equal $c 10 urmom
-not $urmom urmom
-ifjump 4 $urmom";
+swrite localstorage 1 0 ""c""
+swrite localstorage 1 1 ""o""
+swrite localstorage 1 2 ""o""
+swrite localstorage 1 3 ""k""
+swrite localstorage 1 4 ""f""
+swrite localstorage 1 5 ""s""
+jump -1";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
         private List<Dictionary<string, dynamic>> memory = new List<Dictionary<string, dynamic>>();
         private int currentChunk;
         private int variableCount = 0;
+        // TODO: Test it on android and windows
+        string cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc";
 
         public Game1() {
             maxInstruction = bootScript.Split("\n").Length;
@@ -38,8 +41,6 @@ ifjump 4 $urmom";
         }
 
         protected override void Initialize() {
-            // TODO: Test it on android and windows
-            string cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc";
             if (!Directory.Exists(cookfolder)) {
                 Directory.CreateDirectory(cookfolder);
                 File.WriteAllText(cookfolder + "/drives.json", 
@@ -92,7 +93,7 @@ ifjump 4 $urmom";
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
                 }*/
-                (memory, currentChunk, variableCount, currentInstruction) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction);
+                (memory, currentChunk, variableCount, currentInstruction) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction, cookfolder);
 
                 currentInstruction++;
                 if (currentInstruction == maxInstruction)
