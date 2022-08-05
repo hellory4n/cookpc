@@ -175,7 +175,13 @@ namespace CookPC.VM {
                     string old = File.ReadAllText(cookfolder + "/" + args[0] + args[1]);
                     StringBuilder sb = new StringBuilder(old);
                     var ___________________________ = int.TryParse(args[2], out int twentyfive);
-                    sb[twentyfive] = args[3][0];
+                    var i = 0;
+ 
+                    foreach (var item in args[3]) {
+                        sb[twentyfive+i] = item;
+                        i++;
+                    }
+
                     var g = sb.ToString(); // TODO: be a good programmer
                     File.WriteAllText(cookfolder + "/" + args[0] + args[1], g);
 
