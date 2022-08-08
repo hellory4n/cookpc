@@ -6,24 +6,27 @@ using System.Text;
 
 namespace CookPC.VM {
     class InstructionRunner {
-        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction, string cookfolder) {
+        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction, string cookfolder, Devices deviceInfo) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
 
             switch (method) {
                 #region Memory instructions
 
+                // memory chunk allocate
                 case "mcalloc":
                     // Mega complicated logic.
                     memory.Add(new Dictionary<string, dynamic>());
                     break;
 
+                // memory chunk set
                 case "mcset":
                     // int arg0: chunk id
                     var _ = int.TryParse(args[0], out int chunkID);
                     currentChunk = chunkID;
                     break;
                 
+                // memory variable define
                 case "mvdef":
                     // str arg0: variable name
                     // any arg1: value
@@ -33,6 +36,7 @@ namespace CookPC.VM {
                     memory[currentChunk][args[0]] = (dynamic)args[1];
                     break;
                 
+                // memory variable free
                 case "mvfree":
                     // str arg0: variable name
 
@@ -40,12 +44,14 @@ namespace CookPC.VM {
                     variableCount--;
                     break;
                 
+                // memory chunk amount
                 case "mcamount":
                     // str arg0: the variable the result will be saved to
 
                     memory[currentChunk][args[0]] = memory.Count;
                     break;
                 
+                // memory variable amount
                 case "mvamount":
                     // int arg0: chunk id
                     // str arg1: the variable the result will be saved to
@@ -64,7 +70,8 @@ namespace CookPC.VM {
                 case "debug":
                     System.Console.WriteLine(args[0]);
                     break;
-                
+
+                // string combine                
                 case "strcomb":
                     memory[currentChunk][args[2]] = args[0].ToString() + args[1].ToString();
                     break;
@@ -166,6 +173,7 @@ namespace CookPC.VM {
 
                 #region Storage
 
+                // storage write
                 case "swrite":
                     // str arg0: disk to write
                     // int arg1: partition
@@ -187,6 +195,7 @@ namespace CookPC.VM {
 
                     break;
                 
+                // storage read
                 case "sread":
                     // str arg0: disk to write
                     // int arg1: partition

@@ -27,6 +27,7 @@ jump -1";
         private int variableCount = 0;
         // TODO: Test it on android and windows
         string cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc";
+        Devices deviceInfo;
 
         public Game1() {
             maxInstruction = bootScript.Split("\n").Length;
@@ -74,7 +75,7 @@ jump -1";
             }
 
             string deviceInfoJson = File.ReadAllText(cookfolder + "/drives.json");
-            Devices deviceInfo = JsonConvert.DeserializeObject<Devices>(deviceInfoJson);
+            deviceInfo = JsonConvert.DeserializeObject<Devices>(deviceInfoJson);
 
             base.Initialize();
         }
@@ -93,7 +94,7 @@ jump -1";
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
                 }*/
-                (memory, currentChunk, variableCount, currentInstruction) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction, cookfolder);
+                (memory, currentChunk, variableCount, currentInstruction) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction, cookfolder, deviceInfo);
 
                 currentInstruction++;
                 if (currentInstruction == maxInstruction)
