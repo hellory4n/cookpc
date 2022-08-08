@@ -4,6 +4,7 @@ using CookPC.VM;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace CookPC {
     public class Game1 : Game {
@@ -71,6 +72,9 @@ jump -1";
                 File.WriteAllText(cookfolder + "/floppy_a1", new string(' ', 69));
                 File.WriteAllText(cookfolder + "/floppy_b1", new string(' ', 69));
             }
+
+            string deviceInfoJson = File.ReadAllText(cookfolder + "/drives.json");
+            Devices deviceInfo = JsonConvert.DeserializeObject<Devices>(deviceInfoJson);
 
             base.Initialize();
         }
