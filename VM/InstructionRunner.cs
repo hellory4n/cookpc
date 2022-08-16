@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using System.IO;
-using System.Text;
 
 namespace CookPC.VM {
     class InstructionRunner {
-        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction, string cookfolder, Devices deviceInfo) {
+        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction, string cookfolder) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
 
@@ -171,55 +169,7 @@ namespace CookPC.VM {
 
                 #endregion
 
-                #region Storage
 
-                // storage write
-                case "swrite":
-                    // str arg0: disk to write
-                    // int arg1: partition
-                    // int arg2: position on disk
-                    // str arg3: character
-
-                    string old = File.ReadAllText(cookfolder + "/" + args[0] + args[1]);
-                    StringBuilder sb = new StringBuilder(old);
-                    var ___________________________ = int.TryParse(args[2], out int twentyfive);
-                    var i = 0;
- 
-                    foreach (var item in args[3]) {
-                        sb[twentyfive+i] = item;
-                        i++;
-                    }
-
-                    var g = sb.ToString(); // TODO: be a good programmer
-                    File.WriteAllText(cookfolder + "/" + args[0] + args[1], g);
-
-                    break;
-                
-                // storage read
-                case "sread":
-                    // str arg0: disk to write
-                    // int arg1: partition
-                    // int arg2: start position
-                    // int arg3: end position
-                    // str arg4: save to
-
-                    string data = File.ReadAllText(cookfolder + "/" + args[0] + args[1]);
-                    StringBuilder sb2 = new StringBuilder(data);
-                    var ____________________________ = int.TryParse(args[2], out int twentysix);
-                    var _____________________________ = int.TryParse(args[3], out int twentyseven);
-                    var ii = 0;
-                    string thething = "";
- 
-                    while (ii != twentyseven+1) {
-                        thething += sb2[twentysix+ii];
-                        ii++;
-                    }
-
-                    memory[currentChunk][args[4]] = thething;
-
-                    break;
-
-                #endregion
             }
 
             return (memory, currentChunk, variableCount, currentInstruction);

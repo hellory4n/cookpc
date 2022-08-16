@@ -16,8 +16,7 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-sread localstorage 1 1 4 fard
-debug $fard
+debug ""e""
 jump -1";
         private int maxInstruction;
         private int currentInstruction = 0;
@@ -27,7 +26,6 @@ jump -1";
         private int variableCount = 0;
         // TODO: Test it on android and windows
         string cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc";
-        Devices deviceInfo;
 
         public Game1() {
             maxInstruction = bootScript.Split("\n").Length;
@@ -74,8 +72,8 @@ jump -1";
                 File.WriteAllText(cookfolder + "/floppy_b1", new string(' ', 69));
             }
 
-            string deviceInfoJson = File.ReadAllText(cookfolder + "/drives.json");
-            deviceInfo = JsonConvert.DeserializeObject<Devices>(deviceInfoJson);
+            // string deviceInfoJson = File.ReadAllText(cookfolder + "/drives.json");
+            // deviceInfo = JsonConvert.DeserializeObject<Devices>(deviceInfoJson);
 
             base.Initialize();
         }
@@ -94,7 +92,7 @@ jump -1";
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
                 }*/
-                (memory, currentChunk, variableCount, currentInstruction) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction, cookfolder, deviceInfo);
+                (memory, currentChunk, variableCount, currentInstruction) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction, cookfolder);
 
                 currentInstruction++;
                 if (currentInstruction == maxInstruction)
