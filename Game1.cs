@@ -57,7 +57,6 @@ jump -1";
 
             string pcJson = File.ReadAllText(cookfolder + "/cookpc.json");
             pc = JsonConvert.DeserializeObject<Computer>(pcJson);
-            System.Console.WriteLine(pc.cpuArchitecture);
 
             base.Initialize();
         }
@@ -70,8 +69,7 @@ jump -1";
 
         protected override void Update(GameTime gameTime) {
             // Run stuff :)
-            // TODO: Make it blazingly fast
-            while (loopCounter < 1) {
+            while (loopCounter < pc.instructionsPerFrame) {
                 var jsssjjsjshshsj = Lexer.Tokenize(instruction, memory, currentChunk);
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
@@ -94,9 +92,7 @@ jump -1";
             loopCounter = 0;
 
             // We don't want people to create 694201337 variables, that's illegal
-            // TODO: Get this from somewhere
-            // TODO: Don't make the limit this stupid
-            if (variableCount > 9) 
+            if (variableCount > pc.totalVariableCountLimit)
                 this.Exit();
 
             base.Update(gameTime);
