@@ -26,6 +26,7 @@ jump -1";
         private int variableCount = 0;
         // TODO: Test it on android and windows
         string cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc";
+        Computer pc;
 
         public Game1() {
             maxInstruction = bootScript.Split("\n").Length;
@@ -39,41 +40,24 @@ jump -1";
         protected override void Initialize() {
             if (!Directory.Exists(cookfolder)) {
                 Directory.CreateDirectory(cookfolder);
-                File.WriteAllText(cookfolder + "/drives.json", 
+                File.WriteAllText(cookfolder + "/cookpc.json", 
 @"{
-	""localstorage"": {
-		""max"": 69,
-		""partitions"": [
-			{
-				""max"": 69
-			}
-		]
-	},
-	""floppy_a"": {
-		""max"": 69,
-		""partitions"": [
-			{
-				""max"": 69
-			}
-		]
-	},
-	""floppy_b"": {
-		""max"": 69,
-		""partitions"": [
-			{
-				""max"": 69
-			}
-		]
-	}
+	""version"": ""0.1"",
+	""versionType"": ""DEV"",
+	""cpuArchitecture"": ""leg16"",
+	""cpuArchitectureVersion"": ""0"",
+	""instructionsPerFrame"": 750,
+	""totalVariableCountLimit"": 5120
 }");
                 // TODO: change drive size
-                File.WriteAllText(cookfolder + "/localstorage1", new string(' ', 69));
-                File.WriteAllText(cookfolder + "/floppy_a1", new string(' ', 69));
-                File.WriteAllText(cookfolder + "/floppy_b1", new string(' ', 69));
+                File.WriteAllText(cookfolder + "/localstorage", new string(' ', 69));
+                File.WriteAllText(cookfolder + "/floppy_a", new string(' ', 69));
+                File.WriteAllText(cookfolder + "/floppy_b", new string(' ', 69));
             }
 
-            // string deviceInfoJson = File.ReadAllText(cookfolder + "/drives.json");
-            // deviceInfo = JsonConvert.DeserializeObject<Devices>(deviceInfoJson);
+            string pcJson = File.ReadAllText(cookfolder + "/cookpc.json");
+            pc = JsonConvert.DeserializeObject<Computer>(pcJson);
+            System.Console.WriteLine(pc.cpuArchitecture);
 
             base.Initialize();
         }
