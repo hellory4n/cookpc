@@ -190,6 +190,10 @@ namespace CookPC.VM {
                 case "pcipf":
                     memory[currentChunk][args[0]] = pc.instructionsPerFrame;
                     break;
+                
+                case "pctvcl":
+                    memory[currentChunk][args[0]] = pc.totalVariableCountLimit;
+                    break;
 
                 #endregion
 

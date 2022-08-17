@@ -16,8 +16,8 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-pcipf like
-debug $like";
+pctvcl really
+debug $really";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
