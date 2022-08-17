@@ -52,15 +52,19 @@ debug $really";
 	""localstorageSize"": 69,
 	""floppySize"": 69,
 }");
+                string pcJson = File.ReadAllText(cookfolder + "/cookpc.json");
+                pc = JsonConvert.DeserializeObject<Computer>(pcJson);
+
                 // TODO: change drive size
+                System.Console.WriteLine(new string('e', pc.bootSize));
                 File.WriteAllText(cookfolder + "/boot", new string(' ', pc.bootSize));
                 File.WriteAllText(cookfolder + "/localstorage", new string(' ', pc.localstorageSize));
                 File.WriteAllText(cookfolder + "/floppy_a", new string(' ', pc.floppySize));
                 File.WriteAllText(cookfolder + "/floppy_b", new string(' ', pc.floppySize));
+            } else {
+                string pcJson = File.ReadAllText(cookfolder + "/cookpc.json");
+                pc = JsonConvert.DeserializeObject<Computer>(pcJson);
             }
-
-            string pcJson = File.ReadAllText(cookfolder + "/cookpc.json");
-            pc = JsonConvert.DeserializeObject<Computer>(pcJson);
 
             base.Initialize();
         }
