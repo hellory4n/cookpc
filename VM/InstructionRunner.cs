@@ -4,7 +4,7 @@ using System;
 
 namespace CookPC.VM {
     class InstructionRunner {
-        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction, string cookfolder) {
+        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction, string cookfolder, Computer pc) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
 
@@ -169,6 +169,13 @@ namespace CookPC.VM {
 
                 #endregion
 
+                #region PC info
+
+                case "pcversion":
+                    memory[currentChunk][args[0]] = pc.version;
+                    break;
+
+                #endregion
 
             }
 

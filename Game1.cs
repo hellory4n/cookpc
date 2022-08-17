@@ -16,7 +16,8 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-debug ""e""
+pcversion v
+debug $v
 jump 3";
         private int maxInstruction;
         private int currentInstruction = 0;
@@ -78,7 +79,7 @@ jump 3";
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
                 }*/
-                (memory, currentChunk, variableCount, currentInstruction) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction, cookfolder);
+                (memory, currentChunk, variableCount, currentInstruction) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction, cookfolder, pc);
 
                 currentInstruction++;
                 if (currentInstruction == maxInstruction)
