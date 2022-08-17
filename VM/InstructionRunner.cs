@@ -186,6 +186,10 @@ namespace CookPC.VM {
                 case "pcarchver":
                     memory[currentChunk][args[0]] = pc.cpuArchitectureVersion;
                     break;
+                
+                case "pcipf":
+                    memory[currentChunk][args[0]] = pc.instructionsPerFrame;
+                    break;
 
                 #endregion
 
