@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.IO;
+using System.Text;
 
 namespace CookPC.VM {
     class InstructionRunner {
@@ -193,6 +195,30 @@ namespace CookPC.VM {
                 
                 case "pctvcl":
                     memory[currentChunk][args[0]] = pc.totalVariableCountLimit;
+                    break;
+
+                #endregion
+
+                #region Storage
+
+                case "swrite":
+                    // str arg0: disk to write
+                    // int arg1: position on disk
+                    // str arg2: character
+
+                    string old = File.ReadAllText(cookfolder + "/" + args[0]);
+                    StringBuilder sb = new StringBuilder(old);
+                    var ___________________________ = int.TryParse(args[1], out int twentyfive);
+                    var i = 0;
+ 
+                    foreach (var item in args[2]) {
+                        sb[twentyfive+i] = item;
+                        i++;
+                    }
+
+                    var g = sb.ToString(); // TODO: be a good programmer
+                    File.WriteAllText(cookfolder + "/" + args[0], g);
+
                     break;
 
                 #endregion

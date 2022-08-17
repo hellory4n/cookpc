@@ -16,8 +16,12 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-pctvcl really
-debug $really";
+swrite localstorage 2 ""ur mom is fat lol""
+swrite boot 0 ""boots""
+swrite floppy_a 50 ""cd""
+swrite floppy_b 36 ""dvd""
+debug ""bai""
+jump -1";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
@@ -56,7 +60,6 @@ debug $really";
                 pc = JsonConvert.DeserializeObject<Computer>(pcJson);
 
                 // TODO: change drive size
-                System.Console.WriteLine(new string('e', pc.bootSize));
                 File.WriteAllText(cookfolder + "/boot", new string(' ', pc.bootSize));
                 File.WriteAllText(cookfolder + "/localstorage", new string(' ', pc.localstorageSize));
                 File.WriteAllText(cookfolder + "/floppy_a", new string(' ', pc.floppySize));
