@@ -26,7 +26,9 @@ jump 3";
         private int variableCount = 0;
         // TODO: Test it on android and windows
         string cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc";
+        
         Computer pc;
+        Texture2D lelclub;
 
         public Game1() {
             maxInstruction = bootScript.Split("\n").Length;
@@ -36,6 +38,8 @@ jump 3";
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             Window.AllowUserResizing = true;
+
+            _graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
         }
 
         protected override void Initialize() {
@@ -80,7 +84,8 @@ jump 3";
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            using (var fs = File.OpenRead("/home/toddynho/GameProjects/CookPC/SourceCode/CookPC/Content/lelcube.png"))
+                lelclub = Texture2D.FromStream(GraphicsDevice, fs);
         }
 
         protected override void Update(GameTime gameTime) {
@@ -117,7 +122,14 @@ jump 3";
         protected override void Draw(GameTime gameTime) {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            // force aspect ratio part 3
+            _spriteBatch.Begin();
+
+            try {
+                _spriteBatch.Draw(lelclub, new Vector2(-20f, 420f), Color.White);
+            } finally {
+                _spriteBatch.End();
+            }
 
             base.Draw(gameTime);
         }
