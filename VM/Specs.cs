@@ -9,5 +9,7 @@ namespace CookPC.VM {
         public int bootSize = 69;
         public int localstorageSize = 69;
         public int floppySize = 69;
+        public int screenWidth = 1000;
+        public int screenHeight = 100;
     }
 }

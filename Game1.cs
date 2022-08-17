@@ -52,6 +52,8 @@ jump -1";
 	""bootSize"": 69,
 	""localstorageSize"": 69,
 	""floppySize"": 69,
+	""screenWidth"": 640,
+	""screenHeight"": 480
 }");
                 string pcJson = File.ReadAllText(cookfolder + "/cookpc.json");
                 pc = JsonConvert.DeserializeObject<Computer>(pcJson);
