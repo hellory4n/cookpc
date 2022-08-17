@@ -16,9 +16,10 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-pcversion v
-debug $v
-jump 3";
+pcarch urmom
+pcarchver isfat
+debug $urmom
+debug $isfat";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;

@@ -174,6 +174,18 @@ namespace CookPC.VM {
                 case "pcversion":
                     memory[currentChunk][args[0]] = pc.version;
                     break;
+                
+                case "pcvertype":
+                    memory[currentChunk][args[0]] = pc.versionType;
+                    break;
+                
+                case "pcarch":
+                    memory[currentChunk][args[0]] = pc.cpuArchitecture;
+                    break;
+                
+                case "pcarchver":
+                    memory[currentChunk][args[0]] = pc.cpuArchitectureVersion;
+                    break;
 
                 #endregion
 
