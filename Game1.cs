@@ -16,9 +16,8 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-swrite localstorage 50 ""this is a very long text that bypasses the disk storage limits lol haha me haker""
-debug ""bai""
-jump -1";
+debug ""fard lol""
+jump 3";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
@@ -36,6 +35,7 @@ jump -1";
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            Window.AllowUserResizing = true;
         }
 
         protected override void Initialize() {
@@ -67,6 +67,12 @@ jump -1";
                 string pcJson = File.ReadAllText(cookfolder + "/cookpc.json");
                 pc = JsonConvert.DeserializeObject<Computer>(pcJson);
             }
+
+            // Set screen size
+            _graphics.PreferredBackBufferWidth = pc.screenWidth;
+            _graphics.PreferredBackBufferHeight = pc.screenHeight;
+            
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
