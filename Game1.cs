@@ -16,18 +16,7 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-swrite localstorage 2 ""ur mom is fat lol""
-swrite boot 0 ""boots""
-swrite floppy_a 50 ""cd""
-swrite floppy_b 36 ""dvd""
-sread localstorage 2 16 d1
-sread boot 0 4 d2
-sread floppy_a 50 1 d3
-sread floppy_b 36 2 d4
-debug $d1
-debug $d2
-debug $d3
-debug $d4 
+swrite localstorage 50 ""this is a very long text that bypasses the disk storage limits lol haha me haker""
 debug ""bai""
 jump -1";
         private int maxInstruction;
