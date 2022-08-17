@@ -17,7 +17,7 @@ namespace CookPC {
 mcalloc 0
 mcset 0
 debug ""e""
-jump -1";
+jump 3";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
@@ -47,12 +47,16 @@ jump -1";
 	""cpuArchitecture"": ""leg16"",
 	""cpuArchitectureVersion"": ""0"",
 	""instructionsPerFrame"": 750,
-	""totalVariableCountLimit"": 5120
+	""totalVariableCountLimit"": 5120,
+	""bootSize"": 69,
+	""localstorageSize"": 69,
+	""floppySize"": 69,
 }");
                 // TODO: change drive size
-                File.WriteAllText(cookfolder + "/localstorage", new string(' ', 69));
-                File.WriteAllText(cookfolder + "/floppy_a", new string(' ', 69));
-                File.WriteAllText(cookfolder + "/floppy_b", new string(' ', 69));
+                File.WriteAllText(cookfolder + "/boot", new string(' ', pc.bootSize));
+                File.WriteAllText(cookfolder + "/localstorage", new string(' ', pc.localstorageSize));
+                File.WriteAllText(cookfolder + "/floppy_a", new string(' ', pc.floppySize));
+                File.WriteAllText(cookfolder + "/floppy_b", new string(' ', pc.floppySize));
             }
 
             string pcJson = File.ReadAllText(cookfolder + "/cookpc.json");
