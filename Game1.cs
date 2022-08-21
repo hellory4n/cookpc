@@ -29,6 +29,7 @@ jump 3";
         
         Computer pc;
         Texture2D lelclub;
+        RenderTarget2D _nativeRenderTarget;
 
         public Game1() {
             maxInstruction = bootScript.Split("\n").Length;
@@ -84,7 +85,7 @@ jump 3";
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            using (var fs = File.OpenRead("/home/toddynho/GameProjects/CookPC/SourceCode/CookPC/Content/lelcube.png"))
+            using (var fs = File.OpenRead("/home/toddynho/GameProjects/CookPC/SourceCode/CookPC/Content/_lelcube.png"))
                 lelclub = Texture2D.FromStream(GraphicsDevice, fs);
         }
 
@@ -120,16 +121,24 @@ jump 3";
         }
 
         protected override void Draw(GameTime gameTime) {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            // Initialization
+            _nativeRenderTarget = new RenderTarget2D(GraphicsDevice, pc.screenWidth, pc.screenHeight);
 
-            // force aspect ratio part 3
+            // Draw call
+            GraphicsDevice.SetRenderTarget(_nativeRenderTarget);
+            GraphicsDevice.Clear(Color.IndianRed);
+
             _spriteBatch.Begin();
+            _spriteBatch.Draw(lelclub, new Vector2(0, 0), Color.White);
+            _spriteBatch.End();
 
-            try {
-                _spriteBatch.Draw(lelclub, new Vector2(-20f, 420f), Color.White);
-            } finally {
-                _spriteBatch.End();
-            }
+            // after drawing the game at native resolution we can render _nativeRenderTarget to the backbuffer!
+            // First set the GraphicsDevice target back to the backbuffer
+            GraphicsDevice.SetRenderTarget(null);
+            // RenderTarget2D inherits from Texture2D so we can render it just like a texture
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            _spriteBatch.Draw(_nativeRenderTarget, new Rectangle(x: 0, y: 0, width: 2 * pc.screenWidth, height: 2 * pc.screenHeight), Color.White);
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
