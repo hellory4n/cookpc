@@ -16,8 +16,35 @@ namespace CookPC {
 @"mcalloc 0
 mcalloc 0
 mcset 0
-debug ""fard lol""
-jump 3";
+paint 1 1
+paint 2 1
+paint 3 1
+paint 4 1
+paint 5 1
+paint 6 1
+paint 7 1
+paint 8 1
+paint 9 1
+paint 10 1
+paint 11 1
+paint 12 1
+paint 13 1
+paint 14 1
+paint 15 1
+paint 1 2
+paint 1 3
+paint 1 4
+paint 1 5
+paint 1 6
+paint 1 7
+paint 1 8
+paint 1 9
+paint 1 10
+paint 1 11
+paint 1 12
+paint 1 13
+paint 1 14
+paint 1 15";
         private int maxInstruction;
         private int currentInstruction = 0;
         private string instruction;
@@ -28,8 +55,9 @@ jump 3";
         string cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc";
         
         Computer pc;
-        Texture2D lelclub;
+        Texture2D pixel;
         RenderTarget2D _nativeRenderTarget;
+        Dictionary<Vector2, int> pixels = new Dictionary<Vector2, int>();
 
         public Game1() {
             maxInstruction = bootScript.Split("\n").Length;
@@ -86,8 +114,8 @@ jump 3";
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            using (var fs = File.OpenRead("/home/toddynho/GameProjects/CookPC/SourceCode/CookPC/Content/_lelcube.png"))
-                lelclub = Texture2D.FromStream(GraphicsDevice, fs);
+            using (var fs = File.OpenRead("/home/toddynho/GameProjects/CookPC/SourceCode/CookPC/Content/pixel.png"))
+                pixel = Texture2D.FromStream(GraphicsDevice, fs);
         }
 
         protected override void Update(GameTime gameTime) {
@@ -97,7 +125,7 @@ jump 3";
                 /*foreach (var item in jsssjjsjshshsj) {
                     System.Console.WriteLine(item);
                 }*/
-                (memory, currentChunk, variableCount, currentInstruction) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction, cookfolder, pc);
+                (memory, currentChunk, variableCount, currentInstruction, pixels) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction, cookfolder, pc, pixels);
 
                 currentInstruction++;
                 if (currentInstruction == maxInstruction)
@@ -130,7 +158,12 @@ jump 3";
             GraphicsDevice.Clear(Color.IndianRed);
 
             _spriteBatch.Begin();
-            _spriteBatch.Draw(lelclub, new Vector2(0, 0), Color.White);
+            
+            // Draw pixels
+            // TODO: Add color
+            foreach (var (position, color) in pixels) {
+                _spriteBatch.Draw(pixel, position, Color.White);
+            }
             _spriteBatch.End();
 
             // after drawing the game at native resolution we can render _nativeRenderTarget to the backbuffer!

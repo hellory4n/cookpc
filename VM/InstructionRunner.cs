@@ -3,10 +3,11 @@ using System.Linq;
 using System;
 using System.IO;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace CookPC.VM {
     class InstructionRunner {
-        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction, string cookfolder, Computer pc) {
+        public static (List<Dictionary<string, dynamic>>, int, int, int, Dictionary<Vector2, int>) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction, string cookfolder, Computer pc, Dictionary<Vector2, int> pixels) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
 
@@ -245,9 +246,22 @@ namespace CookPC.VM {
 
                 #endregion
 
+                #region Display
+
+                case "paint":
+                    // int arg0: x
+                    // int arg1: y
+                    // TODO: Add color
+
+                    var ______________________________ = int.TryParse(args[0], out int x);
+                    var _______________________________ = int.TryParse(args[1], out int y);
+                    pixels[new Vector2(x, y)] = 1;
+                    break;
+
+                #endregion
             }
 
-            return (memory, currentChunk, variableCount, currentInstruction);
+            return (memory, currentChunk, variableCount, currentInstruction, pixels);
         }
     }
 }
