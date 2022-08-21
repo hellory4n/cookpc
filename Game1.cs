@@ -155,7 +155,7 @@ paint 1 15";
 
             // Draw call
             GraphicsDevice.SetRenderTarget(_nativeRenderTarget);
-            GraphicsDevice.Clear(Color.IndianRed);
+            GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
             
