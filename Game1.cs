@@ -58,7 +58,8 @@ jump 3";
 	""localstorageSize"": 69,
 	""floppySize"": 69,
 	""screenWidth"": 640,
-	""screenHeight"": 480
+	""screenHeight"": 480,
+	""screenScale"": 1
 }");
                 string pcJson = File.ReadAllText(cookfolder + "/cookpc.json");
                 pc = JsonConvert.DeserializeObject<Computer>(pcJson);
@@ -74,8 +75,8 @@ jump 3";
             }
 
             // Set screen size
-            _graphics.PreferredBackBufferWidth = pc.screenWidth;
-            _graphics.PreferredBackBufferHeight = pc.screenHeight;
+            _graphics.PreferredBackBufferWidth = (int)Math.Round(pc.screenWidth * pc.screenScale);
+            _graphics.PreferredBackBufferHeight = (int)Math.Round(pc.screenHeight * pc.screenScale);
             
             _graphics.ApplyChanges();
 
@@ -137,7 +138,7 @@ jump 3";
             GraphicsDevice.SetRenderTarget(null);
             // RenderTarget2D inherits from Texture2D so we can render it just like a texture
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            _spriteBatch.Draw(_nativeRenderTarget, new Rectangle(x: 0, y: 0, width: 2 * pc.screenWidth, height: 2 * pc.screenHeight), Color.White);
+            _spriteBatch.Draw(_nativeRenderTarget, new Rectangle(x: 0, y: 0, width: (int)Math.Round(pc.screenScale * pc.screenWidth), height: (int)Math.Round(pc.screenScale * pc.screenHeight)), Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);

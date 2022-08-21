@@ -10,6 +10,7 @@ namespace CookPC.VM {
         public int localstorageSize = 69;
         public int floppySize = 69;
         public int screenWidth = 1000;
-        public int screenHeight = 100;
+        public int screenHeight = 10;
+        public double screenScale = 1;
     }
 }
