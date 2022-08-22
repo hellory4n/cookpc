@@ -251,11 +251,17 @@ namespace CookPC.VM {
                 case "paint":
                     // int arg0: x
                     // int arg1: y
-                    // TODO: Add color
+                    // int arg2: color
 
                     var ______________________________ = int.TryParse(args[0], out int x);
                     var _______________________________ = int.TryParse(args[1], out int y);
-                    pixels[new Vector2(x, y)] = 1;
+                    var ________________________________ = int.TryParse(args[2], out int colros);
+                    pixels[new Vector2(x, y)] = colros;
+                    break;
+                
+                // display clear
+                case "dclear":
+                    pixels.Clear();
                     break;
 
                 #endregion
