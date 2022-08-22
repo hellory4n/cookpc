@@ -33,6 +33,8 @@ namespace CookPC.VM {
             // TODO: Add the \ thing
             if (input.StartsWith("\"") && input.EndsWith("\""))
                 input = input.Substring(1, input.Length-2);
+            input = input.Replace("\\n", "\n");
+            input = input.Replace("\\q", "\"");
             return input;
         }
     }
