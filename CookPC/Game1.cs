@@ -603,8 +603,8 @@ ffffff");
         protected override void LoadContent() {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            using (var fs = File.OpenRead("./pixel.png"))
-                pixel = Texture2D.FromStream(GraphicsDevice, fs);
+            pixel = new Texture2D(GraphicsDevice, 1, 1);
+            pixel.SetData(new Color[] {Color.White});
         }
 
         protected override void Update(GameTime gameTime) {
