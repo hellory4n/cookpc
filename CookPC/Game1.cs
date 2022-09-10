@@ -279,8 +279,7 @@ dclear";
         private List<Dictionary<string, dynamic>> memory = new List<Dictionary<string, dynamic>>();
         private int currentChunk;
         private int variableCount = 0;
-        // TODO: Test it on android and windows
-        string cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc";
+        string cookfolder;
         
         Computer pc;
         Texture2D pixel;
@@ -301,6 +300,13 @@ dclear";
         }
 
         protected override void Initialize() {
+#if LINUX
+            cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/cookpc";
+#endif
+#if __ANDROID__
+            cookfolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+#endif
+
             if (!Directory.Exists(cookfolder)) {
                 Directory.CreateDirectory(cookfolder);
                 File.WriteAllText(cookfolder + "/cookpc.json", 
@@ -649,7 +655,6 @@ ffffff");
             _spriteBatch.Begin();
             
             // Draw pixels
-            // TODO: Add color
             foreach (var (position, color) in pixels) {
                 var rodrigo = colors[color];
                 var carlos = Enumerable.Range(0, rodrigo.Length / 2)
