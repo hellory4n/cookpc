@@ -1,4 +1,6 @@
 # CookPC
 the coolest fantasy console on the planet
 
-alpha
+not yet
+
+it barely works rn
