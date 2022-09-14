@@ -23,11 +23,14 @@ ifjump 4 $urmom";
 	private List<Dictionary<string, dynamic>> memory = new List<Dictionary<string, dynamic>>();
 	private int currentChunk;
 	private int variableCount = 0;
+	private int x = 0;
+	private int y = 0;
 
 	public override void _Ready() {
 		maxInstruction = bootScript.Split("\n").Length;
 		instruction = bootScript.Split("\n")[currentInstruction];
 		GD.Print("hi mom");
+		this.SetProcess(true);
 	}
 
 	public override void _Process(float delta) {
@@ -60,5 +63,14 @@ ifjump 4 $urmom";
 		// TODO: Don't make the limit this stupid
 		if (variableCount > 9) 
 			GetTree().Quit();
+		
+		this.Update();
+
+		x++;
+		y++;
+	}
+
+	public override void _Draw() {
+		this.DrawLine(new Vector2(x, y), new Vector2(x+40, y+40), new Color(69, 13, 37));
 	}
 }
