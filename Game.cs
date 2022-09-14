@@ -9,27 +9,22 @@ public class Game : Node2D {
 	// TODO: Get this from the cookpc filesystem
 	private string bootScript = 
 @"mcalloc 0
-mcalloc 0
 mcset 0
-mvdef c 0
-add $c 1 c
-debug $c
-equal $c 10 urmom
-not $urmom urmom
-ifjump 4 $urmom";
+mvdef pain 69";
 	private int maxInstruction;
 	private int currentInstruction = 0;
 	private string instruction;
 	private List<Dictionary<string, dynamic>> memory = new List<Dictionary<string, dynamic>>();
 	private int currentChunk;
 	private int variableCount = 0;
-	private int x = 0;
-	private int y = 0;
+	private Color[] colors = Init.CookPcInit();
 
 	public override void _Ready() {
 		maxInstruction = bootScript.Split("\n").Length;
 		instruction = bootScript.Split("\n")[currentInstruction];
 		GD.Print("hi mom");
+		GD.Print(colors[0]);
+		GD.Print(colors[255]);
 		this.SetProcess(true);
 	}
 
@@ -65,12 +60,9 @@ ifjump 4 $urmom";
 			GetTree().Quit();
 		
 		this.Update();
-
-		x++;
-		y++;
 	}
 
 	public override void _Draw() {
-		this.DrawLine(new Vector2(x, y), new Vector2(x+40, y+40), new Color(69, 13, 37));
+		//this.DrawLine(new Vector2(x, y), new Vector2(x+40, y+40), new Color(0.69f, 0.13f, 0.37f));
 	}
 }
