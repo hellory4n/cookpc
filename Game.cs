@@ -23,8 +23,6 @@ mvdef pain 69";
 		maxInstruction = bootScript.Split("\n").Length;
 		instruction = bootScript.Split("\n")[currentInstruction];
 		GD.Print("hi mom");
-		GD.Print(colors[0]);
-		GD.Print(colors[255]);
 		this.SetProcess(true);
 	}
 

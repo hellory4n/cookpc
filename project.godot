@@ -13,6 +13,8 @@ config_version=4
 config/name="CookPC"
 config/description="the coolest fantasy console on the globe"
 run/main_scene="res://game.tscn"
+boot_splash/show_image=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
 config/quit_on_go_back=false
 
@@ -26,6 +28,10 @@ window/stretch/aspect="keep"
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[mono]
+
+runtime/unhandled_exception_policy=1
 
 [physics]
 
