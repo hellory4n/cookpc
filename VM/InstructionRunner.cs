@@ -13,17 +13,20 @@ namespace CookPC.VM {
             switch (method) {
                 #region Memory instructions
 
+                // Memory Chunk ALLOCate
                 case "mcalloc":
                     // Mega complicated logic.
                     memory.Add(new Dictionary<string, dynamic>());
                     break;
 
+                // Memory Chunk SET
                 case "mcset":
                     // int arg0: chunk id
                     var _ = int.TryParse(args[0], out int chunkID);
                     currentChunk = chunkID;
                     break;
                 
+                // Memory Variables DEFine
                 case "mvdef":
                     // str arg0: variable name
                     // any arg1: value
@@ -33,6 +36,7 @@ namespace CookPC.VM {
                     memory[currentChunk][args[0]] = (dynamic)args[1];
                     break;
                 
+                // Memory Variables FREE
                 case "mvfree":
                     // str arg0: variable name
 
@@ -40,12 +44,14 @@ namespace CookPC.VM {
                     variableCount--;
                     break;
                 
+                // Memory Chunk AMOUNT
                 case "mcamount":
                     // str arg0: the variable the result will be saved to
 
                     memory[currentChunk][args[0]] = memory.Count;
                     break;
                 
+                // Memory Chunk AMOUNT
                 case "mvamount":
                     // int arg0: chunk id
                     // str arg1: the variable the result will be saved to
@@ -64,7 +70,8 @@ namespace CookPC.VM {
                 case "debug":
                     GD.Print(args[0]);
                     break;
-                
+
+                // STRing COMBine                
                 case "strcomb":
                     memory[currentChunk][args[2]] = args[0].ToString() + args[1].ToString();
                     break;

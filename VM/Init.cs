@@ -282,9 +282,9 @@ namespace CookPC.VM {
             List<Color> finalPalette = new List<Color>();
             foreach (var item in lines) {
                 string[] rgb = item.Split(",");
-                float red = float.Parse(rgb[0])/255;
-                float green = float.Parse(rgb[1])/255;
-                float blue = float.Parse(rgb[2])/255;
+                float red = float.Parse(rgb[0])/256;
+                float green = float.Parse(rgb[1])/256;
+                float blue = float.Parse(rgb[2])/256;
                 finalPalette.Add(new Color(red, green, blue));
             }
 
