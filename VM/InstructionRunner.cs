@@ -184,6 +184,11 @@ namespace CookPC.VM {
                     var ________________________________ = int.TryParse(args[2], out int color);
                     pixels[new Vector2(x, y)] = color;
                     break;
+                
+                // Display CLEAR
+                case "dclear":
+                    pixels.Clear();
+                    break;
 
                 #endregion
             }

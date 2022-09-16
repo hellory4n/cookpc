@@ -264,7 +264,8 @@ paint 11 15 251
 paint 12 15 252
 paint 13 15 253
 paint 14 15 254
-paint 15 15 255";
+paint 15 15 255
+dclear";
 	private int maxInstruction;
 	private int currentInstruction = 0;
 	private string instruction;
