@@ -14,7 +14,7 @@ config/name="CookPC"
 config/description="the coolest fantasy console on the globe"
 run/main_scene="res://game.tscn"
 boot_splash/show_image=false
-boot_splash/bg_color=Color( 0, 0, 0, 1 )
+boot_splash/bg_color=Color( 0.227451, 0.227451, 0.227451, 1 )
 config/icon="res://icon.png"
 config/quit_on_go_back=false
 
@@ -42,4 +42,5 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
