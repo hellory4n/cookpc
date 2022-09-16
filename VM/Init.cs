@@ -277,7 +277,7 @@ namespace CookPC.VM {
             }
             file.Close();
 
-            // Turn the palette into a tuple
+            // Put those colors into color objects
             string[] lines = palette.Split("\n");
             List<Color> finalPalette = new List<Color>();
             foreach (var item in lines) {

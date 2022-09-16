@@ -18,11 +18,13 @@ mvdef pain 69";
 	private int currentChunk;
 	private int variableCount = 0;
 	private Color[] colors = Init.CookPcInit();
+	private Dictionary<Vector2, int> pixels = new Dictionary<Vector2, int>();
 
 	public override void _Ready() {
 		maxInstruction = bootScript.Split("\n").Length;
 		instruction = bootScript.Split("\n")[currentInstruction];
-		GD.Print("hi mom");
+		pixels[new Vector2(2, 3)] = 1;
+		GD.Print("everything is ready");
 		this.SetProcess(true);
 	}
 
@@ -61,6 +63,8 @@ mvdef pain 69";
 	}
 
 	public override void _Draw() {
-		//this.DrawLine(new Vector2(x, y), new Vector2(x+40, y+40), new Color(0.69f, 0.13f, 0.37f));
+		foreach (KeyValuePair<Vector2, int> pixel in pixels) {
+			this.DrawLine(pixel.Key, new Vector2(pixel.Key.x+1, pixel.Key.y+1), new Color(1, 1, 1));
+		}
 	}
 }
