@@ -6,7 +6,14 @@ using Godot;
 
 namespace CookPC.VM {
     class InstructionRunner {
-        public static (List<Dictionary<string, dynamic>>, int, int, int) Run(List<string> instruction, List<Dictionary<string, dynamic>> memory, int currentChunk, int variableCount, int currentInstruction) {
+        public static (List<Dictionary<string, dynamic>>, int, int, int, Dictionary<Vector2, int>) Run(
+            List<string> instruction,
+            List<Dictionary<string, dynamic>> memory,
+            int currentChunk,
+            int variableCount,
+            int currentInstruction,
+            Dictionary<Vector2, int> pixels
+        ) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
 
@@ -64,7 +71,6 @@ namespace CookPC.VM {
                     break;
 
                 #endregion
-
                 #region Misc
 
                 case "debug":
@@ -77,7 +83,6 @@ namespace CookPC.VM {
                     break;
 
                 #endregion
-
                 #region Boolean stuff
 
                 case "not":
@@ -114,7 +119,6 @@ namespace CookPC.VM {
                     break;
 
                 #endregion
-
                 #region Me- uhh i mean math
 
                 case "add":
@@ -154,7 +158,6 @@ namespace CookPC.VM {
                     break;
 
                 #endregion
-
                 #region Control
 
                 case "jump":
@@ -170,9 +173,22 @@ namespace CookPC.VM {
                     break;
 
                 #endregion
+                #region Display
+
+                case "paint":
+                    // int arg0: x
+                    // int arg1: y
+                    // int arg2: color id (starts at 0)
+                    var ______________________________ = int.TryParse(args[0], out int x);
+                    var _______________________________ = int.TryParse(args[1], out int y);
+                    var ________________________________ = int.TryParse(args[2], out int color);
+                    pixels[new Vector2(x, y)] = color;
+                    break;
+
+                #endregion
             }
 
-            return (memory, currentChunk, variableCount, currentInstruction);
+            return (memory, currentChunk, variableCount, currentInstruction, pixels);
         }
     }
 }
