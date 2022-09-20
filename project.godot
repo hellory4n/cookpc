@@ -18,6 +18,11 @@ boot_splash/bg_color=Color( 0.227451, 0.227451, 0.227451, 1 )
 config/icon="res://icon.png"
 config/quit_on_go_back=false
 
+[autoload]
+
+Global="*res://Global.tscn"
+GlobalScript="*res://Something/Global.cs"
+
 [display]
 
 window/size/width=16

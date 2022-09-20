@@ -14,6 +14,8 @@ public class Game : Node2D {
 	// TODO: create a program node using a script file in user://
 
 	public override void _Ready() {
+		var singleton = GetNode<Global>("/root/Global");
+		GD.Print(singleton.global);
 		this.SetProcess(true);
 	}
 
