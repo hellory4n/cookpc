@@ -12,14 +12,19 @@ public class Game : Node2D {
 	private Color[] colors = Init.CookPcInit();
 	private Dictionary<Vector2, int> pixels = new Dictionary<Vector2, int>();
 	// TODO: create a program node using a script file in user://
+	private Global global;
 
 	public override void _Ready() {
-		var singleton = GetNode<Global>("/root/Global");
-		GD.Print(singleton.global);
+		global = GetNode<Global>("/root/Global");
 		this.SetProcess(true);
 	}
 
 	public override void _Process(float delta) {
+		// TODO: Don't make the limit this stupid
+		// TODO: Get the limit from the json settings file thing
+		if (global.VariableCount > 10)
+			GetTree().Quit();
+
 		this.Update();
 	}
   

@@ -15,13 +15,14 @@ public class ProgramRunner : Node2D {
 	private string instruction;
 	private List<Dictionary<string, dynamic>> memory = new List<Dictionary<string, dynamic>>();
 	private int currentChunk;
-	private int variableCount = 0;
 	private Color[] colors = Init.CookPcInit();
 	private Dictionary<Vector2, int> pixels = new Dictionary<Vector2, int>();
+	private Global global;
 
 	public override void _Ready() {
 		maxInstruction = Script.Split("\n").Length;
 		instruction = Script.Split("\n")[currentInstruction];
+		global = GetNode<Global>("/root/Global");
 		GD.Print(this.Name + " is ready");
 		this.SetProcess(true);
 	}
@@ -31,7 +32,7 @@ public class ProgramRunner : Node2D {
 		// TODO: Make it blazingly fast
 		while (loopCounter < 1) {
 			var jsssjjsjshshsj = Lexer.Tokenize(instruction, memory, currentChunk);
-			(memory, currentChunk, variableCount, currentInstruction, pixels) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, variableCount, currentInstruction, pixels);
+			(memory, currentChunk, global.VariableCount, currentInstruction, pixels) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, global.VariableCount, currentInstruction, pixels);
 
 			currentInstruction++;
 			if (currentInstruction == maxInstruction)
@@ -47,12 +48,6 @@ public class ProgramRunner : Node2D {
 		}*/
 
 		loopCounter = 0;
-
-		// We don't want people to create 694201337 variables, that's illegal
-		// TODO: Get this from somewhere
-		// TODO: Don't make the limit this stupid
-		if (variableCount > 9) 
-			GetTree().Quit();
 		
 		this.Update();
 	}

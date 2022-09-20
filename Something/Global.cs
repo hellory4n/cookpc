@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 public class Global : Node2D {
-	public string global = "singletons are working!";
+	public int VariableCount;
 
 	public override void _Ready() {
 		

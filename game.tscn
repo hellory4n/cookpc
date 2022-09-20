@@ -10,9 +10,16 @@ ProgramScene = ExtResource( 1 )
 [node name="Program" parent="." instance=ExtResource( 1 )]
 Script = "mcalloc 0
 mcset 0
-mvdef c 0
-add $c 1 c
-debug $c
-equal $c 10 urmom
-not $urmom urmom
-ifjump 3 $urmom"
+mvdef one 1
+mvdef two 2
+mvdef three 3
+mvdef four 4
+mvdef five 5
+mvdef six 6
+mvdef seven 7
+mvdef eight 8
+mvdef nine 9
+mvdef ten 10
+mvdef eleven 11
+debug \"why it not crash\""
+CpuCycles = 1
