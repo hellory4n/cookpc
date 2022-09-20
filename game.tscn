@@ -7,7 +7,6 @@
 script = ExtResource( 2 )
 
 [node name="Program" parent="." instance=ExtResource( 1 )]
-Script = "debug \"me slow :(\"
-morecpu 69
-debug \"now mii fast in a nice way :D\""
+Script = "paint 0 0 42
+run \"paint 15 15 69\\ndebug m\""
 CpuCycles = 1
