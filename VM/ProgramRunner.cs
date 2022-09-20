@@ -13,7 +13,6 @@ public class ProgramRunner : Node2D {
 	private int maxInstruction;
 	private int currentInstruction = 0;
 	private string instruction;
-	private List<Dictionary<string, dynamic>> memory = new List<Dictionary<string, dynamic>>();
 	private int currentChunk;
 	private Global global;
 
@@ -29,8 +28,8 @@ public class ProgramRunner : Node2D {
 		// Run stuff :)
 		// TODO: Make it blazingly fast
 		while (loopCounter < 1) {
-			var jsssjjsjshshsj = Lexer.Tokenize(instruction, memory, currentChunk);
-			(memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels);
+			var jsssjjsjshshsj = Lexer.Tokenize(instruction, global.Memory, currentChunk);
+			(global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels) = InstructionRunner.Run(jsssjjsjshshsj, global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels);
 
 			currentInstruction++;
 			if (currentInstruction == maxInstruction)
