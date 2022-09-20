@@ -15,8 +15,6 @@ public class ProgramRunner : Node2D {
 	private string instruction;
 	private List<Dictionary<string, dynamic>> memory = new List<Dictionary<string, dynamic>>();
 	private int currentChunk;
-	private Color[] colors = Init.CookPcInit();
-	private Dictionary<Vector2, int> pixels = new Dictionary<Vector2, int>();
 	private Global global;
 
 	public override void _Ready() {
@@ -32,7 +30,7 @@ public class ProgramRunner : Node2D {
 		// TODO: Make it blazingly fast
 		while (loopCounter < 1) {
 			var jsssjjsjshshsj = Lexer.Tokenize(instruction, memory, currentChunk);
-			(memory, currentChunk, global.VariableCount, currentInstruction, pixels) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, global.VariableCount, currentInstruction, pixels);
+			(memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels) = InstructionRunner.Run(jsssjjsjshshsj, memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels);
 
 			currentInstruction++;
 			if (currentInstruction == maxInstruction)
