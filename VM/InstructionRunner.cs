@@ -12,7 +12,8 @@ namespace CookPC.VM {
             int,
             int,
             Dictionary<Vector2, int>,
-            List<ProgramRunner>
+            List<ProgramRunner>,
+            int
         ) Run(
             List<string> instruction,
             List<Dictionary<string, dynamic>> memory,
@@ -21,7 +22,8 @@ namespace CookPC.VM {
             int currentInstruction,
             Dictionary<Vector2, int> pixels,
             PackedScene programScene,
-            List<ProgramRunner> newPrograms
+            List<ProgramRunner> newPrograms,
+            int cpuCycles
         ) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
@@ -189,6 +191,12 @@ namespace CookPC.VM {
                     // We can't call AddChild from the interpreter part 2
                     newPrograms.Add(newProgram);
                     break;
+                
+                case "morecpu":
+                    // int arg0: how many instructions this program will now run every frame
+                    var ___________________________ = int.TryParse(args[0], out int twentyfive);
+                    cpuCycles = twentyfive;
+                    break;
 
                 #endregion
                 #region Display
@@ -211,7 +219,7 @@ namespace CookPC.VM {
                 #endregion
             }
 
-            return (memory, currentChunk, variableCount, currentInstruction, pixels, newPrograms);
+            return (memory, currentChunk, variableCount, currentInstruction, pixels, newPrograms, cpuCycles);
         }
     }
 }

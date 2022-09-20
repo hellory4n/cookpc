@@ -35,7 +35,7 @@ public class ProgramRunner : Node2D {
 		while (loopCounter < CpuCycles) {
 			var jsssjjsjshshsj = Lexer.Tokenize(instruction, global.Memory, currentChunk);
 			// sorry
-			(global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels, global.NewPrograms) = InstructionRunner.Run(jsssjjsjshshsj, global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels, global.ProgramScene, global.NewPrograms);
+			(global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels, global.NewPrograms, CpuCycles) = InstructionRunner.Run(jsssjjsjshshsj, global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels, global.ProgramScene, global.NewPrograms, CpuCycles);
 
 			currentInstruction++;
 			if (currentInstruction == maxInstruction)
