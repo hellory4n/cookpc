@@ -4,12 +4,6 @@ using System.Collections.Generic;
 using CookPC.VM;
 
 public class Game : Node2D {
-	#pragma warning disable 649
-	// We assign this in the editor, so we don't need the warning about not being assigned
-	[Export]
-	public PackedScene ProgramScene;
-	#pragma warning restore 649
-
 	public Color[] colors = Init.CookPcInit();
 	// TODO: create a program node using a script file in user://
 	private Global global;
@@ -24,6 +18,13 @@ public class Game : Node2D {
 		// TODO: Get the limit from the json settings file thing
 		if (global.VariableCount > 10)
 			GetTree().Quit();
+		
+		// We can't call AddChild from the interpreter part 3
+		foreach (ProgramRunner yes in global.NewPrograms) {
+			AddChild(yes);
+		}
+		if (global.NewPrograms.Count > 0)
+			global.NewPrograms.Clear();
 
 		this.Update();
 	}

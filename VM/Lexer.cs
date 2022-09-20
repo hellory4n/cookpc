@@ -30,9 +30,12 @@ namespace CookPC.VM {
 		// No idea why I made this a separate method
 		// TODO: Write good code
 		public static string DoStuffWithString(string input) {
-			// TODO: Add the \ thing
 			if (input.StartsWith("\"") && input.EndsWith("\""))
 				input = input.Substring(1, input.Length-2);
+			input = input.Replace("\\n", "\n");
+			input = input.Replace("\\q", "\"");
+			input = input.Replace("\\fn", "\\n");
+			input = input.Replace("\\fq", "\\q");
 			return input;
 		}
 	}

@@ -16,6 +16,11 @@ public class ProgramRunner : Node2D {
 	private int currentChunk;
 	private Global global;
 
+	// We need this for the run instructions
+	public void Init(string script) {
+		Script = script;
+	}
+
 	public override void _Ready() {
 		maxInstruction = Script.Split("\n").Length;
 		instruction = Script.Split("\n")[currentInstruction];
@@ -29,7 +34,8 @@ public class ProgramRunner : Node2D {
 		// TODO: Make it blazingly fast
 		while (loopCounter < CpuCycles) {
 			var jsssjjsjshshsj = Lexer.Tokenize(instruction, global.Memory, currentChunk);
-			(global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels) = InstructionRunner.Run(jsssjjsjshshsj, global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels);
+			// sorry
+			(global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels, global.NewPrograms) = InstructionRunner.Run(jsssjjsjshshsj, global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels, global.ProgramScene, global.NewPrograms);
 
 			currentInstruction++;
 			if (currentInstruction == maxInstruction)

@@ -6,13 +6,22 @@ using Godot;
 
 namespace CookPC.VM {
     class InstructionRunner {
-        public static (List<Dictionary<string, dynamic>>, int, int, int, Dictionary<Vector2, int>) Run(
+        public static (
+            List<Dictionary<string, dynamic>>,
+            int,
+            int,
+            int,
+            Dictionary<Vector2, int>,
+            List<ProgramRunner>
+        ) Run(
             List<string> instruction,
             List<Dictionary<string, dynamic>> memory,
             int currentChunk,
             int variableCount,
             int currentInstruction,
-            Dictionary<Vector2, int> pixels
+            Dictionary<Vector2, int> pixels,
+            PackedScene programScene,
+            List<ProgramRunner> newPrograms
         ) {
             var method = instruction[0];
             var args = instruction.Skip(1).ToList();
@@ -171,6 +180,15 @@ namespace CookPC.VM {
                     if (twentyfour)
                         currentInstruction = twentythree-1; // the interpreter will increment the currentInstruction counter
                     break;
+                
+                case "run":
+                    // str arg0: the script this program will run
+
+                    ProgramRunner newProgram = (ProgramRunner)programScene.Instance();
+                    newProgram.Init(args[0]);
+                    // We can't call AddChild from the interpreter part 2
+                    newPrograms.Add(newProgram);
+                    break;
 
                 #endregion
                 #region Display
@@ -193,7 +211,7 @@ namespace CookPC.VM {
                 #endregion
             }
 
-            return (memory, currentChunk, variableCount, currentInstruction, pixels);
+            return (memory, currentChunk, variableCount, currentInstruction, pixels, newPrograms);
         }
     }
 }
