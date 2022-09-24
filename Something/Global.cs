@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using CookPC.VM;
 
 public class Global : Node2D {
 	public int VariableCount;
@@ -9,9 +10,11 @@ public class Global : Node2D {
 	public PackedScene ProgramScene = ResourceLoader.Load("res://Program.tscn") as PackedScene;
 	// We can't call AddChild from the interpreter part 1
 	public List<ProgramRunner> NewPrograms = new List<ProgramRunner>();
+	public Color[] Colors;
+	public Settings Settings;
 
 	public override void _Ready() {
-		
+		(Colors, Settings) = Init.CookPcInit();
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

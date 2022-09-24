@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 namespace CookPC.VM {
     class Init {
-        public static Color[] CookPcInit() {
-            // Load/create the color palette file
+        public static (Color[], Settings) CookPcInit() {
+            #region Load/create the color palette file
             #region rider can't minimize this massive string so i made this region
             const string originalPalette = 
 @"0,0,0
@@ -264,18 +265,18 @@ namespace CookPC.VM {
 255,255,153
 255,255,204
 255,255,255";
-            #endregion
+            #endregion 
             string palette = "";
-            Godot.File file = new Godot.File();
-            if (!file.FileExists("user://colors")) {
-                file.Open("user://colors", File.ModeFlags.Write);
-                file.StoreString(originalPalette);
+            Godot.File colorFile = new Godot.File();
+            if (!colorFile.FileExists("user://colors")) {
+                colorFile.Open("user://colors", File.ModeFlags.Write);
+                colorFile.StoreString(originalPalette);
                 palette = originalPalette;
             } else {
-                file.Open("user://colors", File.ModeFlags.Read);
-                palette = file.GetAsText();
+                colorFile.Open("user://colors", File.ModeFlags.Read);
+                palette = colorFile.GetAsText();
             }
-            file.Close();
+            colorFile.Close();
 
             // Put those colors into color objects
             string[] lines = palette.Split("\n");
@@ -287,8 +288,23 @@ namespace CookPC.VM {
                 float blue = float.Parse(rgb[2])/256;
                 finalPalette.Add(new Color(red, green, blue));
             }
+            #endregion
 
-            return finalPalette.ToArray();
+            #region cookpc.json
+            Godot.File cookPcJson = new Godot.File();
+            Settings settings = new Settings();
+            if (!cookPcJson.FileExists("user://cookpc.json")) {
+                cookPcJson.Open("user://cookpc.json", File.ModeFlags.Write);
+                string jason = JsonConvert.SerializeObject(settings);
+                cookPcJson.StoreString(jason);
+            } else {
+                cookPcJson.Open("user://cookpc.json", File.ModeFlags.Read);
+                string jayson = cookPcJson.GetAsText();
+                settings = JsonConvert.DeserializeObject<Settings>(jayson);
+            }
+            #endregion
+
+            return (finalPalette.ToArray(), settings);
         }
     }
 }

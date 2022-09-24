@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using CookPC.VM;
 
 public class Game : Node2D {
-	public Color[] colors = Init.CookPcInit();
 	// TODO: create a program node using a script file in user://
 	private Global global;
 
 	public override void _Ready() {
 		global = GetNode<Global>("/root/Global");
+		// TODO: Use ScreenWidth and ScreenHeight
 		this.SetProcess(true);
 	}
 
@@ -31,7 +31,7 @@ public class Game : Node2D {
   
 	public override void _Draw() {
 		foreach (KeyValuePair<Vector2, int> pixel in global.Pixels) {
-			this.DrawLine(pixel.Key, new Vector2(pixel.Key.x+1, pixel.Key.y+1), colors[pixel.Value]);
+			this.DrawLine(pixel.Key, new Vector2(pixel.Key.x+1, pixel.Key.y+1), global.Colors[pixel.Value]);
 		}
 	}
 }
