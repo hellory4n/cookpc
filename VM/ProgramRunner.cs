@@ -31,7 +31,6 @@ public class ProgramRunner : Node2D {
 
 	public override void _Process(float delta) {
 		// Run stuff :)
-		// TODO: Make it blazingly fast
 		while (loopCounter < CpuCycles) {
 			var jsssjjsjshshsj = Lexer.Tokenize(instruction, global.Memory, currentChunk);
 			// sorry

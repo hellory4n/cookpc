@@ -21,9 +21,7 @@ public class Game : Node2D {
 	}
 
 	public override void _Process(float delta) {
-		// TODO: Don't make the limit this stupid
-		// TODO: Get the limit from the json settings file thing
-		if (global.VariableCount > 10)
+		if (global.VariableCount > global.Settings.VariableLimit)
 			GetTree().Quit();
 		
 		// We can't call AddChild from the interpreter part 3
