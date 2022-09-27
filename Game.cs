@@ -28,8 +28,13 @@ public class Game : Node2D {
 		foreach (ProgramRunner yes in global.NewPrograms) {
 			AddChild(yes);
 		}
+
 		if (global.NewPrograms.Count > 0)
 			global.NewPrograms.Clear();
+		
+		if (Input.IsKeyPressed((int)KeyList.F11)) {
+			OS.WindowFullscreen = !OS.WindowFullscreen;
+		}
 
 		this.Update();
 	}

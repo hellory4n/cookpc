@@ -25,8 +25,8 @@ GlobalScript="*res://Something/Global.cs"
 
 [display]
 
-window/size/width=16
-window/size/height=16
+window/size/width=640
+window/size/height=480
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
