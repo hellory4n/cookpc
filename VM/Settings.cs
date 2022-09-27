@@ -7,7 +7,5 @@ namespace CookPC.VM {
         public string ArchitectureVersion = "0";
         public int DefaultInstructionsPerFrame = 750;
         public int VariableLimit = 10240;
-        public int ScreenWidth = 640;
-        public int ScreenHeight = 480;
     }
 }

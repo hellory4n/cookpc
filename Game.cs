@@ -9,14 +9,6 @@ public class Game : Node2D {
 
 	public override void _Ready() {
 		global = GetNode<Global>("/root/Global");
-		/*get_tree().set_screen_stretch(
-			SceneTree.STRETCH_MODE_2D, SceneTree.STRETCH_ASPECT_KEEP, settings.resolution
-		)*/
-		Vector2 resolution = new Vector2(global.Settings.ScreenWidth, global.Settings.ScreenHeight);
-		GetTree().SetScreenStretch(
-			SceneTree.StretchMode.Mode2d, SceneTree.StretchAspect.Keep, resolution
-		);
-		OS.WindowSize = resolution;
 		this.SetProcess(true);
 	}
 
