@@ -17,6 +17,9 @@ public class Game : Node2D {
 			SceneTree.StretchMode.Viewport, SceneTree.StretchAspect.Keep, resolution
 		);
 		OS.WindowSize = resolution;
+		// TODO: add a better filter for when scaling the thing
+		GetViewport().GetTexture().Flags = (uint)Texture.FlagsEnum.Filter;
+
 		this.SetProcess(true);
 	}
 
@@ -36,6 +39,8 @@ public class Game : Node2D {
 			OS.WindowFullscreen = !OS.WindowFullscreen;
 		}
 
+		this.Name = "j";
+
 		this.Update();
 	}
   
@@ -43,5 +48,9 @@ public class Game : Node2D {
 		foreach (KeyValuePair<Vector2, int> pixel in global.Pixels) {
 			this.DrawLine(pixel.Key, new Vector2(pixel.Key.x+1, pixel.Key.y+1), global.Colors[pixel.Value]);
 		}
+	}
+
+	public void OnResize() {
+		GD.Print("the window was resized");
 	}
 }
