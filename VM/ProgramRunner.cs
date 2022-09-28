@@ -15,6 +15,7 @@ public class ProgramRunner : Node2D {
 	private string instruction;
 	private int currentChunk;
 	private Global global;
+	private string[] instructionList;
 
 	// We need this for the run instructions
 	public void Init(string script) {
@@ -22,8 +23,9 @@ public class ProgramRunner : Node2D {
 	}
 
 	public override void _Ready() {
-		maxInstruction = Script.Split("\n").Length;
-		instruction = Script.Split("\n")[currentInstruction];
+		instructionList = Script.Split("\n");
+		maxInstruction = instructionList.Length;
+		instruction = instructionList[currentInstruction];
 		global = GetNode<Global>("/root/Global");
 		GD.Print(this.Name + " is ready");
 		this.SetProcess(true);
@@ -40,7 +42,7 @@ public class ProgramRunner : Node2D {
 			if (currentInstruction == maxInstruction)
 				currentInstruction = 0;
 
-			instruction = Script.Split("\n")[currentInstruction];
+			instruction = instructionList[currentInstruction];
 
 			loopCounter++;
 		}
