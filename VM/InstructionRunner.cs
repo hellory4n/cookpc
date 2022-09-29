@@ -25,8 +25,22 @@ namespace CookPC.VM {
             List<ProgramRunner> newPrograms,
             int cpuCycles
         ) {
-            var method = instruction[0];
-            var args = instruction.Skip(1).ToList();
+            #region Do stuff the lexer can't do
+            List<string> newInstruction = new List<string>();
+            foreach (var item in instruction) {
+				var jsssjjsjshshsj = item;
+
+				if (!jsssjjsjshshsj.StartsWith("\"") && jsssjjsjshshsj.StartsWith("$")) {
+                    var theThingWithoutTheDollarSign = item.Substring(1, item.Length-1);
+                    jsssjjsjshshsj = memory[currentChunk][theThingWithoutTheDollarSign].ToString(); // you're welcome
+				}
+
+				newInstruction.Add(jsssjjsjshshsj);
+			}
+            #endregion
+
+            var method = newInstruction[0];
+            var args = newInstruction.Skip(1).ToList();
 
             switch (method) {
                 #region Memory instructions

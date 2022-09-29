@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CookPC.VM {
 	class Lexer {
-		public static List<string> Tokenize(string input, List<Dictionary<string, dynamic>> memory, int currentChunk) {
+		public static List<string> Tokenize(string input) {
 			Regex regex = new Regex(@"[ ](?=(?:[^""]*""[^""]*"")*[^""]*$)", RegexOptions.Multiline);
 			string[] splits = regex.Split(input);
 			List<string> splits2 = new List<string>();
@@ -14,12 +14,6 @@ namespace CookPC.VM {
 
 				if (jsssjjsjshshsj.StartsWith("\"") && jsssjjsjshshsj.EndsWith("\""))
 					jsssjjsjshshsj = DoStuffWithString(item);
-				else {
-					if (jsssjjsjshshsj.StartsWith("$")) {
-						var theThingWithoutTheDollarSign = item.Substring(1, item.Length-1);
-						jsssjjsjshshsj = memory[currentChunk][theThingWithoutTheDollarSign].ToString(); // you're welcome
-					}
-				}
 
 				splits2.Add(jsssjjsjshshsj);
 			}

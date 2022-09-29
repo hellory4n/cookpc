@@ -12,12 +12,13 @@ public class ProgramRunner : Node2D {
 	private int loopCounter = 0;
 	private int maxInstruction;
 	private int currentInstruction = 0;
-	private string instruction;
-	private int currentChunk;
+	private List<string> instruction;
+	private int currentChunk = 0;
 	private Global global;
 	private string[] instructionList;
+	private List<List<string>> instructions = new List<List<string>>();
 
-	// We need this for the run instructions
+	// We need this for the run instruction
 	public void Init(string script) {
 		Script = script;
 	}
@@ -25,7 +26,13 @@ public class ProgramRunner : Node2D {
 	public override void _Ready() {
 		instructionList = Script.Split("\n");
 		maxInstruction = instructionList.Length;
-		instruction = instructionList[currentInstruction];
+
+		// Tokenize the thing
+		foreach (string thething in instructionList) {
+			instructions.Add(Lexer.Tokenize(thething));
+		}
+		instruction = instructions[currentInstruction];
+
 		global = GetNode<Global>("/root/Global");
 		GD.Print(this.Name + " is ready");
 		this.SetProcess(true);
@@ -34,15 +41,14 @@ public class ProgramRunner : Node2D {
 	public override void _Process(float delta) {
 		// Run stuff :)
 		while (loopCounter < CpuCycles) {
-			var jsssjjsjshshsj = Lexer.Tokenize(instruction, global.Memory, currentChunk);
 			// sorry
-			(global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels, global.NewPrograms, CpuCycles) = InstructionRunner.Run(jsssjjsjshshsj, global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels, global.ProgramScene, global.NewPrograms, CpuCycles);
+			(global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels, global.NewPrograms, CpuCycles) = InstructionRunner.Run(instruction, global.Memory, currentChunk, global.VariableCount, currentInstruction, global.Pixels, global.ProgramScene, global.NewPrograms, CpuCycles);
 
 			currentInstruction++;
 			if (currentInstruction == maxInstruction)
 				currentInstruction = 0;
 
-			instruction = instructionList[currentInstruction];
+			instruction = instructions[currentInstruction];
 
 			loopCounter++;
 		}
